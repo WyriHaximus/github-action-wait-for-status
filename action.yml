@@ -1,0 +1,8 @@
+name: 'Wait for commit statuses'
+description: 'Wait for commit statuses to be either successful or failed'
+#outputs:
+#  status:
+#    description: 'Success or failure'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

@@ -1,0 +1,14 @@
+{
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.3",
+    "api-clients/github": "dev-master",
+    "monolog/monolog": "^2.0",
+    "bramus/monolog-colored-line-formatter": "^3.0",
+    "wyrihaximus/react-psr-3-stdio": "^2.1",
+    "wyrihaximus/monolog-formatted-psr-handler": "^1.2",
+    "wyrihaximus/psr-3-callable-throwable-logger": "^2.0",
+    "wyrihaximus/ticking-promise": "^1.6"
+  }
+}
