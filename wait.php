@@ -35,9 +35,11 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autolo
         return $user->repository($repo);
     })->then(function (Repository $repository) use ($logger) {
         $logger->debug('Locating commit: ' . getenv('GITHUB_SHA'));
-        return $repository->commits()->filter(function (Commit $commit) {
-            return $commit->sha() === getenv('GITHUB_SHA');
+        return $repository->branches()->filter(function (Repository\Branch $branch) {
+            return $branch->commit()->sha() === getenv('GITHUB_SHA');
         })->take(1)->toPromise();
+    })->then(function (Repository\Branch $branch) {
+        return $branch->detailedCommit();
     })->then(function (Commit $commit) use ($logger) {
         $logger->notice('Checking status');
         return $commit->status();
