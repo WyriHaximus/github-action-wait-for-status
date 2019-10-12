@@ -214,12 +214,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-api-clients/github.git",
-                "reference": "888fc346b8df7629f39e3a783e9cd129eb67d6b4"
+                "reference": "178cacdc241280b1e1c0c120770ab747f9ad026a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-api-clients/github/zipball/888fc346b8df7629f39e3a783e9cd129eb67d6b4",
-                "reference": "888fc346b8df7629f39e3a783e9cd129eb67d6b4",
+                "url": "https://api.github.com/repos/php-api-clients/github/zipball/178cacdc241280b1e1c0c120770ab747f9ad026a",
+                "reference": "178cacdc241280b1e1c0c120770ab747f9ad026a",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,7 @@
                 }
             ],
             "description": "Async first Github client",
-            "time": "2019-10-11T21:42:39+00:00"
+            "time": "2019-10-12T16:34:44+00:00"
         },
         {
             "name": "api-clients/hydrator",
