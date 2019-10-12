@@ -9,9 +9,13 @@ use Bramus\Monolog\Formatter\ColoredLineFormatter;
 use Monolog\Logger;
 use React\EventLoop\Factory;
 use React\Promise\Promise;
+use React\Promise\PromiseInterface;
+use Rx\Observable;
 use WyriHaximus\Monolog\FormattedPsrHandler\FormattedPsrHandler;
 use WyriHaximus\PSR3\CallableThrowableLogger\CallableThrowableLogger;
 use WyriHaximus\React\PSR3\Stdio\StdioLogger;
+use function ApiClients\Tools\Rx\observableFromArray;
+use function React\Promise\resolve;
 use function WyriHaximus\React\timedPromise;
 
 require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
@@ -30,20 +34,33 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autolo
     $logger->pushHandler($consoleHandler);
     [$owner, $repo] = explode('/', getenv('GITHUB_REPOSITORY'));
     $logger->debug('Looking up owner: ' . $owner);
+    /** @var Repository|null $rep */
+    $rep = null;
     AsyncClient::create($loop, new Token(getenv('GITHUB_TOKEN')))->user($owner)->then(function (User $user) use ($repo, $logger) {
         $logger->debug('Looking up repository: ' . $repo);
         return $user->repository($repo);
-    })->then(function (Repository $repository) use ($logger) {
+    })->then(function (Repository $repository) use ($logger, &$rep) {
+        $rep = $repository;
         $logger->debug('Locating commit: ' . getenv('GITHUB_SHA'));
-        return $repository->branches()->filter(function (Repository\Branch $branch) {
-            return $branch->commit()->sha() === getenv('GITHUB_SHA');
+        return $repository->specificCommit(getenv('GITHUB_SHA'));
+    })->then(function (Commit $commit) use ($logger, &$rep) {
+        $commits = [];
+        $commits[] = resolve($commit);
+        foreach ($commit->parents() as $parent) {
+            $commits[] = $rep->specificCommit($parent->sha());
+        }
+        return observableFromArray($commits)->flatMap(function (PromiseInterface $promise) {
+            return Observable::fromPromise($promise);
+        })->flatMap(function (Commit $commit) {
+            return Observable::fromPromise($commit->status());
+        })->filter(function (Commit\CombinedStatus $status) {
+            return $status->totalCount() > 0;
+        })->flatMap(function (Commit\CombinedStatus $status) use ($logger, &$rep) {
+            $logger->debug('Found actual commit holding relevant status: ' . $status->sha());
+            return observableFromArray([$status]);
         })->take(1)->toPromise();
-    })->then(function (Repository\Branch $branch) {
-        return $branch->detailedCommit();
-    })->then(function (Commit $commit) use ($logger) {
-        $logger->notice('Checking status');
-        return $commit->status();
     })->then(function (Commit\CombinedStatus $status) use ($loop, $logger) {
+        $logger->notice('Checking status');
         return new Promise(function (callable $resolve, callable $reject) use ($status, $loop, $logger) {
             $check = function ($status) use (&$timer, $resolve, $loop, $logger, &$check) {
                 if ($status->state() === 'pending') {
