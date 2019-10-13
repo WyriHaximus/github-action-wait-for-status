@@ -25,6 +25,7 @@ const REPOSITORY = 'GITHUB_REPOSITORY';
 const TOKEN = 'GITHUB_TOKEN';
 const SHA = 'GITHUB_SHA';
 const ACTIONS = 'INPUT_IGNOREACTIONS';
+const INTERVAL = 'INPUT_CHECKINTERVAL';
 
 (function () {
     $loop = Factory::create();
@@ -73,8 +74,8 @@ const ACTIONS = 'INPUT_IGNOREACTIONS';
             new Promise(function (callable $resolve, callable $reject) use ($commit, $loop, $logger) {
                 $checkStatuses = function (Commit\CombinedStatus $status) use (&$timer, $resolve, $loop, $logger, &$checkStatuses) {
                     if ($status->state() === 'pending') {
-                        $logger->warning('Statuses are pending, checking again in 10 seconds');
-                        timedPromise($loop, 10)->then(function () use ($status, $checkStatuses, $logger) {
+                        $logger->warning('Statuses are pending, checking again in ' . getenv(INTERVAL) . ' seconds');
+                        timedPromise($loop, getenv(INTERVAL))->then(function () use ($status, $checkStatuses, $logger) {
                             $logger->notice('Checking statuses');
                             $status->refresh()->then($checkStatuses);
                         });
@@ -103,8 +104,8 @@ const ACTIONS = 'INPUT_IGNOREACTIONS';
                     }
 
                     if ($state === 'pending') {
-                        $logger->warning('Checks are pending, checking again in 10 seconds');
-                        timedPromise($loop, 10)->then(function () use ($commit, $checkChecks, $logger) {
+                        $logger->warning('Checks are pending, checking again in ' . getenv(INTERVAL) . ' seconds');
+                        timedPromise($loop, getenv(INTERVAL))->then(function () use ($commit, $checkChecks, $logger) {
                             $logger->notice('Checking statuses');
                             $commit->checks()->filter(function (Commit\Check $check) {
                                 return in_array($check->name(), explode(',', getenv(ACTIONS)), true) === false;
