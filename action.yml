@@ -1,5 +1,8 @@
 name: 'Wait for commit statuses'
 description: 'Wait for commit statuses to be either successful or failed'
+branding:
+  icon: 'clock'
+  color: 'orange'
 inputs:
   ignoreActions:
     description: 'CSV of action names to ignore'
