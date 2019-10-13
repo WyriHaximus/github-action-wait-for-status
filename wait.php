@@ -21,6 +21,11 @@ use function WyriHaximus\React\timedPromise;
 
 require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
+const REPOSITORY = 'GITHUB_REPOSITORY';
+const TOKEN = 'GITHUB_TOKEN';
+const SHA = 'GITHUB_SHA';
+const ACTIONS = 'INPUT_IGNOREACTIONS';
+
 (function () {
     $loop = Factory::create();
     $consoleHandler = new FormattedPsrHandler(StdioLogger::create($loop)->withHideLevel(true));
@@ -33,30 +38,30 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autolo
     ));
     $logger = new Logger('wait');
     $logger->pushHandler($consoleHandler);
-    [$owner, $repo] = explode('/', getenv('GITHUB_REPOSITORY'));
+    [$owner, $repo] = explode('/', getenv(REPOSITORY));
     $logger->debug('Looking up owner: ' . $owner);
     /** @var Repository|null $rep */
     $rep = null;
-    AsyncClient::create($loop, new Token(getenv('GITHUB_TOKEN')))->user($owner)->then(function (User $user) use ($repo, $logger) {
+    AsyncClient::create($loop, new Token(getenv(TOKEN)))->user($owner)->then(function (User $user) use ($repo, $logger) {
         $logger->debug('Looking up repository: ' . $repo);
         return $user->repository($repo);
     })->then(function (Repository $repository) use ($logger, &$rep) {
         $rep = $repository;
-        $logger->debug('Locating commit: ' . getenv('GITHUB_SHA'));
-        return $repository->specificCommit(getenv('GITHUB_SHA'));
+        $logger->debug('Locating commit: ' . getenv(SHA));
+        return $repository->specificCommit(getenv(SHA));
     })->then(function (Commit $commit) use ($logger, &$rep) {
         $commits = [];
         $commits[] = resolve($commit);
         foreach ($commit->parents() as $parent) {
             $commits[] = $rep->specificCommit($parent->sha());
         }
-        $logger->debug('Locating check: ' . getenv('GITHUB_ACTION'));
+        $logger->debug('Locating checks: ' . getenv(ACTIONS));
         return observableFromArray($commits)->flatMap(function (PromiseInterface $promise) {
             return Observable::fromPromise($promise);
         })->flatMap(function (Commit $commit) {
             return $commit->checks();
         })->filter(function (Commit\Check $check) {
-            return $check->name() === getenv('GITHUB_ACTION');
+            return in_array($check->name(), explode(',', getenv(ACTIONS)), true);
         })->flatMap(function (Commit\Check $check) use ($logger, &$rep) {
             $logger->debug('Found check and commit holding relevant statuses and checks: ' . $check->headSha());
             return observableFromArray([$rep->specificCommit($check->headSha())]);
@@ -102,7 +107,7 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autolo
                         timedPromise($loop, 10)->then(function () use ($commit, $checkChecks, $logger) {
                             $logger->notice('Checking statuses');
                             $commit->checks()->filter(function (Commit\Check $check) {
-                                return $check->name() !== getenv('GITHUB_ACTION');
+                                return in_array($check->name(), explode(',', getenv(ACTIONS)), true) === false;
                             })->toArray()->toPromise()->then($checkChecks);
                         });
                         return;
@@ -112,7 +117,7 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autolo
                     $resolve($state);
                 };
                 $commit->checks()->filter(function (Commit\Check $check) {
-                    return $check->name() !== getenv('GITHUB_ACTION');
+                    return in_array($check->name(), explode(',', getenv(ACTIONS)), true) === false;
                 })->toArray()->toPromise()->then($checkChecks);
             }),
         ]);

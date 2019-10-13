@@ -1,5 +1,9 @@
 name: 'Wait for commit statuses'
 description: 'Wait for commit statuses to be either successful or failed'
+inputs:
+  ignoreActions:
+    description: 'CSV of action names to ignore'
+    required: true
 #outputs:
 #  status:
 #    description: 'Success or failure'
