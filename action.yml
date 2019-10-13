@@ -4,9 +4,10 @@ inputs:
   ignoreActions:
     description: 'CSV of action names to ignore'
     required: true
-#outputs:
-#  status:
-#    description: 'Success or failure'
+outputs:
+  status:
+    description: 'Success or failure'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'

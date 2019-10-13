@@ -132,7 +132,7 @@ const ACTIONS = 'INPUT_IGNOREACTIONS';
     })->then(function (string $status) use ($loop) {
         return timedPromise($loop, 1, $status);
     })->done(function (string $state) {
-        echo PHP_EOL, $state, PHP_EOL;
+        echo PHP_EOL, '::set-output name=status::' . $state, PHP_EOL;
     }, CallableThrowableLogger::create($logger));
     $loop->run();
 })();
