@@ -15,6 +15,7 @@ use WyriHaximus\Monolog\FormattedPsrHandler\FormattedPsrHandler;
 use WyriHaximus\PSR3\CallableThrowableLogger\CallableThrowableLogger;
 use WyriHaximus\React\PSR3\Stdio\StdioLogger;
 use function ApiClients\Tools\Rx\observableFromArray;
+use function React\Promise\all;
 use function React\Promise\resolve;
 use function WyriHaximus\React\timedPromise;
 
@@ -49,34 +50,80 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autolo
         foreach ($commit->parents() as $parent) {
             $commits[] = $rep->specificCommit($parent->sha());
         }
+        $logger->debug('Locating check: ' . getenv('GITHUB_ACTION'));
         return observableFromArray($commits)->flatMap(function (PromiseInterface $promise) {
             return Observable::fromPromise($promise);
         })->flatMap(function (Commit $commit) {
-            return Observable::fromPromise($commit->status());
-        })->filter(function (Commit\CombinedStatus $status) {
-            return $status->totalCount() > 0;
-        })->flatMap(function (Commit\CombinedStatus $status) use ($logger, &$rep) {
-            $logger->debug('Found actual commit holding relevant status: ' . $status->sha());
-            return observableFromArray([$status]);
+            return $commit->checks();
+        })->filter(function (Commit\Check $check) {
+            return $check->name() === getenv('GITHUB_ACTION');
+        })->flatMap(function (Commit\Check $check) use ($logger, &$rep) {
+            $logger->debug('Found check and commit holding relevant statuses and checks: ' . $check->headSha());
+            return observableFromArray([$rep->specificCommit($check->headSha())]);
         })->take(1)->toPromise();
-    })->then(function (Commit\CombinedStatus $status) use ($loop, $logger) {
-        $logger->notice('Checking status');
-        return new Promise(function (callable $resolve, callable $reject) use ($status, $loop, $logger) {
-            $check = function ($status) use (&$timer, $resolve, $loop, $logger, &$check) {
-                if ($status->state() === 'pending') {
-                    $logger->warning('Status is pending, checking again in 10 seconds');
-                    timedPromise($loop, 10)->then(function () use ($status, $check, $logger) {
-                        $logger->notice('Checking status');
-                        $status->refresh()->then($check);
-                    });
-                    return;
-                }
+    })->then(function (Commit $commit) use ($loop, $logger) {
+        $logger->notice('Checking statuses and checks');
 
-                $logger->info('Status resolved: ' . $status->state());
-                $resolve($status->state());
-            };
-            $check($status);
-        });
+        return all([
+            new Promise(function (callable $resolve, callable $reject) use ($commit, $loop, $logger) {
+                $checkStatuses = function (Commit\CombinedStatus $status) use (&$timer, $resolve, $loop, $logger, &$checkStatuses) {
+                    if ($status->state() === 'pending') {
+                        $logger->warning('Statuses are pending, checking again in 10 seconds');
+                        timedPromise($loop, 10)->then(function () use ($status, $checkStatuses, $logger) {
+                            $logger->notice('Checking statuses');
+                            $status->refresh()->then($checkStatuses);
+                        });
+                        return;
+                    }
+
+                    $logger->info('Status resolved: ' . $status->state());
+                    $resolve($status->state());
+                };
+                $commit->status()->then($checkStatuses);
+            }),
+            new Promise(function (callable $resolve, callable $reject) use ($commit, $loop, $logger) {
+                $checkChecks = function (array $checks) use (&$timer, $resolve, $loop, $logger, &$checkChecks, $commit) {
+                    $state = 'success';
+                    /** @var Commit\Check $status */
+                    foreach ($checks as $status) {
+                        if ($status->status() !== 'completed') {
+                            $state = 'pending';
+                            break;
+                        }
+
+                        if ($status->conclusion() !== 'success') {
+                            $state = 'failure';
+                            break;
+                        }
+                    }
+
+                    if ($state === 'pending') {
+                        $logger->warning('Checks are pending, checking again in 10 seconds');
+                        timedPromise($loop, 10)->then(function () use ($commit, $checkChecks, $logger) {
+                            $logger->notice('Checking statuses');
+                            $commit->checks()->filter(function (Commit\Check $check) {
+                                return $check->name() !== getenv('GITHUB_ACTION');
+                            })->toArray()->toPromise()->then($checkChecks);
+                        });
+                        return;
+                    }
+
+                    $logger->info('Checks resolved: ' . $state);
+                    $resolve($state);
+                };
+                $commit->checks()->filter(function (Commit\Check $check) {
+                    return $check->name() !== getenv('GITHUB_ACTION');
+                })->toArray()->toPromise()->then($checkChecks);
+            }),
+        ]);
+    })->then(function (array $statuses) {
+        foreach ($statuses as $status) {
+            if ($status !== 'success') {
+                return 'failure';
+            }
+        }
+
+        return 'success';
     })->then(function (string $status) use ($loop) {
         return timedPromise($loop, 1, $status);
     })->done(function (string $state) {
