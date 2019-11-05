@@ -1,0 +1,22 @@
+name: Continuous Integration
+on:
+  push:
+  pull_request:
+jobs:
+  qa:
+    strategy:
+      matrix:
+        php: [7.3]
+    runs-on: ubuntu-latest
+    container:
+      image: wyrihaximusnet/php:${{ matrix.php }}-zts-alpine3.10-dev-root
+    steps:
+      - uses: actions/checkout@v1
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@master"
+        with:
+          ignoreActions: qa*
+          checkInterval: 13
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
