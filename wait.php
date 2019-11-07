@@ -73,7 +73,13 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
         return all([
             new Promise(function (callable $resolve, callable $reject) use ($commit, $loop, $logger) {
                 $checkStatuses = function (Commit\CombinedStatus $status) use (&$timer, $resolve, $loop, $logger, &$checkStatuses) {
-                    if ($status->state() === 'pending' && $status->totalCount() > 0) {
+                    if ($status->totalCount() === 0) {
+                        $logger->warning('No statuses found, assuming success');
+                        $resolve('success');
+                        return;
+                    }
+
+                    if ($status->state() === 'pending') {
                         $interval = getenv(INTERVAL) === null ? getenv(INTERVAL) : 10;
                         $logger->warning('Statuses are pending, checking again in ' . $interval . ' seconds');
                         timedPromise($loop, $interval)->then(function () use ($status, $checkStatuses, $logger) {
