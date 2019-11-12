@@ -14,7 +14,6 @@ inputs:
 outputs:
   status:
     description: 'Success or failure'
-    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
