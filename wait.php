@@ -111,7 +111,7 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
                     }
 
                     if ($state === 'pending') {
-                        $interval = getenv(INTERVAL) === null ? getenv(INTERVAL) : 10;
+                        $interval = getenv(INTERVAL) === null ? 10 : getenv(INTERVAL);
                         $logger->warning('Checks are pending, checking again in ' . $interval . ' seconds');
                         timedPromise($loop, $interval)->then(function () use ($commit, $checkChecks, $logger) {
                             $logger->notice('Checking statuses');
