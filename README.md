@@ -34,6 +34,8 @@ This action has only one output and that's the `status` output. It has two possi
 
 * `success` when all statuses and checks have a successful outcome.
 * `failure` when any status or check has failed, even though other checks might still be running.
+* `error` when an error occurs, log output will include the response body.
+* `rate_limited` when the API calls this action makes are rate limited.
 
 As shown in the example below the `status` output can be used to skip any follow up steps in the action if conditions aren't met.
 
