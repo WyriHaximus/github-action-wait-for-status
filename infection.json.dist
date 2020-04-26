@@ -1,0 +1,20 @@
+{
+    "timeout": 120,
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "infection-log.txt"
+    },
+    "mutators": {
+        "@default": true,
+        "MethodCallRemoval": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait::57",
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait::92"
+            ]
+        }
+    }
+}

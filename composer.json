@@ -1,14 +1,55 @@
 {
-  "minimum-stability": "dev",
-  "prefer-stable": true,
+  "name": "wyrihaximus/github-action-wait-for-status",
+  "description": "Github Action that waits for successful commit statuses and checks.",
   "require": {
-    "php": "^7.3",
+    "php": "^7.4",
     "api-clients/github": "dev-master",
-    "monolog/monolog": "^2.0",
+    "api-clients/psr7-http-status-exceptions": "^1.0",
+    "api-clients/rx": "^2.2.1",
     "bramus/monolog-colored-line-formatter": "^3.0",
-    "wyrihaximus/react-psr-3-stdio": "^2.1",
+    "clue/buzz-react": "^2.7",
+    "monolog/monolog": "^2.0",
+    "psr/log": "^1.1",
+    "react/event-loop": "^1.1",
+    "react/promise": "^2.7",
+    "react/promise-stream": "^1.2",
+    "react/stream": "^1.1",
+    "reactivex/rxphp": "^2.0",
+    "thecodingmachine/safe": "^1.1",
+    "wyrihaximus/constants": "^1.5",
     "wyrihaximus/monolog-formatted-psr-handler": "^1.2",
     "wyrihaximus/psr-3-callable-throwable-logger": "^2.0",
+    "wyrihaximus/react-psr-3-stdio": "^2.1",
     "wyrihaximus/ticking-promise": "^1.6"
+  },
+  "require-dev": {
+    "wyrihaximus/async-test-utilities": "^2.0"
+  },
+  "config": {
+    "platform": {
+      "php": "7.4"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "WyriHaximus\\GithubAction\\WaitForStatus\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WyriHaximus\\Tests\\GithubAction\\WaitForStatus\\": "tests"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-install-cmd": [
+      "composer normalize"
+    ],
+    "post-update-cmd": [
+      "composer normalize"
+    ]
   }
 }

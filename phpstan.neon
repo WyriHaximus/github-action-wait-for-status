@@ -1,0 +1,10 @@
+parameters:
+	ignoreErrors:
+		- '#Parameter \#2 \$interval of function WyriHaximus\\React\\timedPromise expects int, float given.#'
+		- '#Call to an undefined method Rx\\ObservableInterface::filter\(\).#'
+	ergebnis:
+		classesAllowedToBeExtended:
+			- Exception
+
+includes:
+	- vendor/wyrihaximus/async-test-utilities/rules.neon

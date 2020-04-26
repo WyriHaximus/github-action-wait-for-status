@@ -1,0 +1,12 @@
+filter:
+    paths: [src/*]
+    excluded_paths: [tests/*]
+build:
+    nodes:
+        analysis:
+            environment:
+                php:
+                    version: 7.4
+            tests:
+                override:
+                    - php-scrutinizer-run --enable-security-analysis
