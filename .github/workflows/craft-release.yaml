@@ -1,0 +1,171 @@
+name: Create Release
+env:
+  DOCKER_IMAGE: wyrihaximusgithubactions/wait-for-status
+  MILESTONE: ${{ github.event.milestone.title }}
+on:
+  milestone:
+    types:
+      - closed
+jobs:
+  wait-for-status-checks:
+    name: Wait for status checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: sleep 13
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@master"
+        with:
+          ignoreActions: "Wait for status checks"
+          checkInterval: 5
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - id: generate-version-strategy
+        if: steps.waitforstatuschecks.outputs.status != 'success'
+        name: Fail
+        run: exit 1
+  generate-version-strategy:
+    name: Generate Version Strategy
+    needs:
+      - wait-for-status-checks
+    runs-on: ubuntu-latest
+    outputs:
+      docker_versions: ${{ steps.generate-version-strategy.outputs.docker_versions }}
+      tag_versions: ${{ steps.generate-version-strategy.outputs.tag_versions }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: WyriHaximus/github-action-break-up-semver@master
+        id: breakupsemver
+        with:
+          version: ${{ env.MILESTONE }}
+      - id: generate-version-strategy
+        name: Generate Versions
+        env:
+          MAJOR: ${{ steps.breakupsemver.outputs.v_major }}
+          MAJOR_MINOR: ${{ steps.breakupsemver.outputs.v_major_minor }}
+          MAJOR_MINOR_PATCH: ${{ steps.breakupsemver.outputs.v_major_minor_patch }}
+        run: |
+          echo "::set-output name=docker_versions::[\"${MAJOR}\",\"${MAJOR_MINOR}\",\"${MAJOR_MINOR_PATCH}\"]"
+          git tag > tag.list
+          cat tag.list
+          printf "::set-output name=tag_versions::%s" $(jq --raw-input --slurp 'split("\n")' tag.list -c | php -r "echo json_encode(array_values(array_diff_assoc(json_decode('[\"${MAJOR}\",\"${MAJOR_MINOR}\",\"${MAJOR_MINOR_PATCH}\"]'), json_decode(stream_get_contents(STDIN)))));")
+  generate-changelog:
+    name: Generate Changelog
+    needs:
+      - generate-version-strategy
+    runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.changelog.outputs.changelog }}
+    steps:
+      - name: Generate changelog
+        uses: WyriHaximus/github-action-jwage-changelog-generator@v1
+        id: changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          milestone: ${{ env.MILESTONE }}
+      - name: Show changelog
+        run: echo "${CHANGELOG}"
+        env:
+          CHANGELOG: ${{ steps.changelog.outputs.changelog }}
+  tag-docker-image:
+    name: Tag Docker image for version ${{ matrix.version }}
+    needs:
+      - generate-version-strategy
+    strategy:
+      matrix:
+        version: ${{ fromJson(needs.generate-version-strategy.outputs.docker_versions) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        env:
+          DOCKER_USER: ${{ secrets.HUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.HUB_PASSCODE }}
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | \
+          docker login \
+            --username "${{ secrets.DOCKER_USER }}" \
+            --password-stdin
+      - name: Pull source image
+        run: docker pull "${DOCKER_IMAGE}:sha-${GITHUB_SHA}"
+      - name: Retag images for release
+        run: docker tag "${DOCKER_IMAGE}:sha-${GITHUB_SHA}" "${DOCKER_IMAGE}:${{ matrix.version }}"
+      - run: docker images
+      - name: Push release images to Docker Hub
+        run: docker push "${DOCKER_IMAGE}:${{ matrix.version }}"
+  create-release:
+    name: Create Release
+    needs:
+      - generate-version-strategy
+      - tag-docker-image
+      - generate-changelog
+    strategy:
+      matrix:
+        version: ${{ fromJson(needs.generate-version-strategy.outputs.tag_versions) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create release/${{ matrix.version }} branch
+        run: git checkout -b release/${{ matrix.version }} ${GITHUB_SHA}
+      - run: sed -i 's/master/${{ matrix.version }}/g' Dockerfile
+      - run: cat Dockerfile
+      - run: git add Dockerfile
+      - run: git status
+      - run: echo -e "${CHANGELOG}" > release-${{ matrix.version }}-changelog.md
+        env:
+          CHANGELOG: ${{ needs.generate-changelog.outputs.changelog }}
+      - run: |
+          echo -e "${MILESTONE_DESCRIPTION}\r\n\r\n${CHANGELOG}" > release-${{ matrix.version }}-release-message.md
+          cat release-${{ matrix.version }}-release-message.md
+          release_message=$(cat release-${{ matrix.version }}-release-message.md)
+          release_message="${release_message//'%'/'%25'}"
+          release_message="${release_message//$'\n'/'%0A'}"
+          release_message="${release_message//$'\r'/'%0D'}"
+          echo "::set-output name=release_message::$release_message"
+        id: releasemessage
+        env:
+          MILESTONE_DESCRIPTION: ${{ github.event.milestone.description }}
+          CHANGELOG: ${{ needs.generate-changelog.outputs.changelog }}
+      - run: cat release-${{ matrix.version }}-changelog.md
+      - name: Set git commit user
+        run: |
+          git config user.name '${{ github.actor }}'
+          git config user.email '${{ github.actor }}@users.noreply.github.com'
+      - run: git commit -F release-${{ matrix.version }}-changelog.md
+      - run: git tag -F release-${{ matrix.version }}-changelog.md ${{ matrix.version }}
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          tags: true
+          branch: release/${{ matrix.version }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Reference Release with Changelog
+        if: ${{ matrix.version == env.MILESTONE }}
+        uses: fleskesvor/create-release@feature/support-target-commitish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ matrix.version }}
+          release_name: ${{ matrix.version }}
+          body: ${{ steps.releasemessage.outputs.release_message }}
+          draft: false
+          prerelease: false
+          commitish: release/${{ matrix.version }}
+      - name: Create Release with Changelog
+        if: ${{ matrix.version != env.MILESTONE }}
+        uses: fleskesvor/create-release@feature/support-target-commitish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ matrix.version }}
+          release_name: ${{ matrix.version }}
+          body: Reference tag to ${{ env.MILESTONE }}
+          draft: false
+          prerelease: false
+          commitish: release/${{ matrix.version }}
+      - name: Delete release/${{ matrix.version }} branch
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{github.token}}
+          branches: release/${{ matrix.version }}

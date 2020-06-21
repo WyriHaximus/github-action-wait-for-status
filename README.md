@@ -73,7 +73,7 @@ jobs:
     steps:
       - name: 'Wait for status checks'
         id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+        uses: "WyriHaximus/github-action-wait-for-status@v2"
         with:
           ignoreActions: automerge
           checkInterval: 13
@@ -89,7 +89,7 @@ jobs:
 
 ## License ##
 
-Copyright 2019 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
+Copyright 2020 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
