@@ -19,7 +19,7 @@ labelPRBasedOnFilePath:
   "HTML 👷‍♀️":
     - "**/*.htm"
     - "**/*.html"
-  "NEON 🦹‍♂️
+  "NEON 🦹‍♂️":
     - "**/*.neon"
   "MarkDown 📝":
     - "**/*.md"
@@ -42,6 +42,7 @@ labelPRBasedOnFilePath:
     - .github/*
   "CI 🚧":
     - .github/workflows/*
+    - .scrutinizer.yml
   "Templates 🌲":
     - "**/*.twig"
     - "**/*.tpl"
