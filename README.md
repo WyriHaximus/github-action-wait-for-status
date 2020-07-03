@@ -1,6 +1,6 @@
 # github-action-wait-for-status
 
-Github Action that waits for successful commit statuses and checks.
+GitHub Action that waits for successful commit statuses and checks.
 
 ![](images/action.png)
 
