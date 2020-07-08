@@ -15,7 +15,7 @@ jobs:
       - run: sleep 13
       - name: 'Wait for status checks'
         id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@master"
+        uses: WyriHaximus/github-action-wait-for-status@v1
         with:
           ignoreActions: "Wait for status checks,Create Release"
           checkInterval: 5
