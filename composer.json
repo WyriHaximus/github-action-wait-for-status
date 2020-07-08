@@ -1,6 +1,6 @@
 {
   "name": "wyrihaximus/github-action-wait-for-status",
-  "description": "Github Action that waits for successful commit statuses and checks.",
+  "description": "GitHub Action that waits for successful commit statuses and checks.",
   "require": {
     "php": "^7.4",
     "api-clients/github": "dev-master",
