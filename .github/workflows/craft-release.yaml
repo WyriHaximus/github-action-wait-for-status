@@ -17,7 +17,7 @@ jobs:
         id: waitforstatuschecks
         uses: "WyriHaximus/github-action-wait-for-status@master"
         with:
-          ignoreActions: "Wait for status checks"
+          ignoreActions: "Wait for status checks,Create Release"
           checkInterval: 5
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
