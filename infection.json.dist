@@ -10,6 +10,11 @@
     },
     "mutators": {
         "@default": true,
+        "Continue_": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\StatusCheck\\Checks::refresh::50"
+            ]
+        },
         "MethodCallRemoval": {
             "ignore": [
                 "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait::57",
