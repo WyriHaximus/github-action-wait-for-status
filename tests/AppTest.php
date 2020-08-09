@@ -27,6 +27,8 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Locating commit: d2ddfe536405fa61cd5f8ae1b3e06f192bac1d64')->shouldBeCalled();
         $logger->notice('Checking statuses and checks for commit: d2ddfe536405fa61cd5f8ae1b3e06f192bac1d64')->shouldBeCalled();
         $logger->notice('Checking statuses')->shouldBeCalled();
+        $logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
+        $logger->debug('Check "qa (7.3)" has the following status "completed" and conclusion "success"')->shouldBeCalled();
         $logger->debug('All checks completed, marking resolve and success')->shouldBeCalled();
         $result = $this->await(
             App::boot($loop, $logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
@@ -55,6 +57,8 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Locating commit: 67bdf304b34567e0f434bc0f9f19d3022cc1aa6c')->shouldBeCalled();
         $logger->notice('Checking statuses and checks for commit: 67bdf304b34567e0f434bc0f9f19d3022cc1aa6c')->shouldBeCalled();
         $logger->notice('Checking statuses')->shouldBeCalled();
+        $logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
+        $logger->debug('Check "Travis CI - Branch" has the following status "completed" and conclusion "action_required"')->shouldBeCalled();
         $logger->debug('Check (Travis CI - Branch) failed, marking resolve and failure')->shouldBeCalled();
         $result = $this->await(
             App::boot($loop, $logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
@@ -78,7 +82,7 @@ final class AppTest extends AsyncTestCase
         $loop   = Factory::create();
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(Argument::containingString('Rate limit (remaining/limit/reset):'));
-        $logger->debug('Error reason: {"message":"Bad credentials","documentation_url":"https://developer.github.com/v3"}')->shouldBeCalled();
+        $logger->debug('Error reason: {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}')->shouldBeCalled();
         $logger->debug('Looking up owner: WyriHaximus')->shouldBeCalled();
         $logger->log(
             'error',

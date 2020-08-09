@@ -33,6 +33,8 @@ final class ChecksTest extends AsyncTestCase
     {
         $logger = $this->logger->reveal();
         assert($logger instanceof LoggerInterface);
+        $this->logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
+        $this->logger->debug('Check "qa" has the following status "completed" and conclusion "success"')->shouldBeCalled();
         $this->logger->debug('All checks completed, marking resolve and success')->shouldBeCalled();
         $commit = $this->commit->reveal();
         assert($commit instanceof Commit);
@@ -57,6 +59,8 @@ final class ChecksTest extends AsyncTestCase
     {
         $logger = $this->logger->reveal();
         assert($logger instanceof LoggerInterface);
+        $this->logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
+        $this->logger->debug('Check "qa" has the following status "completed" and conclusion "failure"')->shouldBeCalled();
         $this->logger->debug('Check (qa) failed, marking resolve and failure')->shouldBeCalled();
         $commit = $this->commit->reveal();
         assert($commit instanceof Commit);
@@ -81,6 +85,8 @@ final class ChecksTest extends AsyncTestCase
     {
         $logger = $this->logger->reveal();
         assert($logger instanceof LoggerInterface);
+        $this->logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
+        $this->logger->debug('Check "qa" has the following status "not_yet_completed" and conclusion "Not supposed to be here"')->shouldBeCalled();
         $this->logger->debug('Check (qa) hasn\'t completed yet, checking again next interval')->shouldBeCalled();
         $commit = $this->commit->reveal();
         assert($commit instanceof Commit);
@@ -88,7 +94,7 @@ final class ChecksTest extends AsyncTestCase
         assert($check instanceof Commit\Check);
         $this->check->name()->shouldBeCalled()->willReturn('qa');
         $this->check->status()->shouldBeCalled()->willReturn('not_yet_completed');
-        $this->check->conclusion()->shouldNotBeCalled();
+        $this->check->conclusion()->shouldBeCalled()->willReturn('Not supposed to be here');
         $this->commit->checks()->shouldBeCalled()->willReturn(observableFromArray([$check]));
         $checks = new Checks($commit, $logger, '');
         self::assertFalse($checks->hasResolved());

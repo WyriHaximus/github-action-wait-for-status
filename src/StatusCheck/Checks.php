@@ -7,6 +7,7 @@ use Psr\Log\LoggerInterface;
 use React\Promise\PromiseInterface;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheckInterface;
 use function assert;
+use function count;
 use function explode;
 use function in_array;
 use const WyriHaximus\Constants\Boolean\FALSE_;
@@ -34,20 +35,29 @@ final class Checks implements StatusCheckInterface
         return $this->commit->checks()->filter(function (Commit\Check $check): bool {
             return in_array($check->name(), $this->ignoreActions, TRUE_) === FALSE_;
         })->toArray()->toPromise()->then(function (array $checks): void {
+            $return = FALSE_;
+            $this->logger->debug('Iterating over ' . count($checks) . ' check(s)');
             foreach ($checks as $status) {
                 assert($status instanceof Commit\Check);
+                $this->logger->debug('Check "' . $status->name() . '" has the following status "' . $status->status() . '" and conclusion "' . $status->conclusion() . '"');
                 if ($status->status() !== 'completed') {
                     $this->logger->debug('Check (' . $status->name() . ') hasn\'t completed yet, checking again next interval');
 
-                    return;
+                    $return = TRUE_;
                 }
 
-                if ($status->conclusion() !== 'success') {
-                    $this->logger->debug('Check (' . $status->name() . ') failed, marking resolve and failure');
-                    $this->resolved = TRUE_;
-
-                    return;
+                if ($status->status() !== 'completed' || $status->conclusion() === 'success') {
+                    continue;
                 }
+
+                $this->logger->debug('Check (' . $status->name() . ') failed, marking resolve and failure');
+                $this->resolved = TRUE_;
+
+                $return = TRUE_;
+            }
+
+            if ($return === TRUE_) {
+                return;
             }
 
             $this->logger->debug('All checks completed, marking resolve and success');
