@@ -90,6 +90,8 @@ jobs:
           entrypoint: hadolint
           args: Dockerfile-build
   build-docker-image:
+    strategy:
+      fail-fast: false
     name: Build Docker image
     needs:
       - generate-ref
