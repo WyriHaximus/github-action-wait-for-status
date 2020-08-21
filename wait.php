@@ -35,7 +35,7 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
         getenv(ACTIONS),
         (float) getenv(INTERVAL) > 0.0 ? (float) getenv(INTERVAL) : 13,
     )->then(function (string $state) {
-        echo PHP_EOL, '::set-output name=status::' . $state, PHP_EOL;
+        echo PHP_EOL, 'Final status: ' . $state, PHP_EOL, '::set-output name=status::' . $state, PHP_EOL;
     })->done();
     $loop->run();
 })();
