@@ -48,7 +48,7 @@ final class LookUpCommitsTest extends AsyncTestCase
         assert($commit instanceof Commit);
         $this->repository->specificCommit(self::SHA)->shouldBeCalled()->willReturn(resolve($commit));
 
-        $promise = (new LookUpCommits(self::SHA, $logger))($repository);
+        $promise = (new LookUpCommits($logger, self::SHA))($repository);
         $result  = $this->await(unwrapObservableFromPromise($promise)->toArray()->toPromise());
         self::assertSame([$commit], $result);
     }
