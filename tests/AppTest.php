@@ -33,9 +33,9 @@ final class AppTest extends AsyncTestCase
         $result = $this->await(
             App::boot($loop, $logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
                 'WyriHaximus/github-action-wait-for-status',
-                'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64',
                 'wait',
-                1
+                1,
+                'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64'
             ),
             $loop,
             30
@@ -63,9 +63,9 @@ final class AppTest extends AsyncTestCase
         $result = $this->await(
             App::boot($loop, $logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
                 'WyriHaximus/php-broadcast',
-                '67bdf304b34567e0f434bc0f9f19d3022cc1aa6c',
                 'wait',
-                1
+                1,
+                '67bdf304b34567e0f434bc0f9f19d3022cc1aa6c'
             ),
             $loop,
             30
@@ -92,9 +92,9 @@ final class AppTest extends AsyncTestCase
         $result = $this->await(
             App::boot($loop, $logger->reveal(), new Token('FAKE_TOKEN_TO_FORCE_ERROR'))->wait(
                 'WyriHaximus/github-action-wait-for-status',
-                'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64',
                 'wait',
-                1
+                1,
+                'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64'
             ),
             $loop,
             30
