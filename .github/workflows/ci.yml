@@ -41,6 +41,7 @@ jobs:
         run: composer install --ansi --no-progress --no-interaction --prefer-dist -o
   qa:
     strategy:
+      fail-fast: false
       matrix:
         qa: [lint, cs, stan, psalm, unit-ci, infection, composer-require-checker, composer-unused]
     needs: composer-install
