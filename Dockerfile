@@ -1,1 +1,1 @@
-FROM wyrihaximusgithubactions/wait-for-status:master
+FROM fcurella/wait-for-status:master
