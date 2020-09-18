@@ -19,6 +19,14 @@ List of actions to ignore the status from, mainly to exclude the action this act
 * *Type*: `CSV`
 * *Example*: `automerge,otheraction` but a single action is also perfectly valid `automerge`
 
+### ignoreContexts
+
+List of contexts to ignore the status from, mainly to exclude external checks.
+
+* *Required*: `No`
+* *Type*: `CSV`
+* *Example*: `coverage/coveralls,ci/circleci: build` but a single action is also perfectly valid `coverage/coveralls`
+
 ### checkInterval
 
 The amount of seconds to wait between checks, adjust depending on the expected time all the checks and related CI's will take.

@@ -14,13 +14,15 @@ final class Status implements StatusCheckInterface
 {
     private LoggerInterface $logger;
     private Commit\CombinedStatus $combinedStatus;
+    private array $ignoreContexts;
     private bool $resolved   = FALSE_;
     private bool $successful = FALSE_;
 
-    public function __construct(LoggerInterface $logger, Commit\CombinedStatus $combinedStatus)
+    public function __construct(LoggerInterface $logger, Commit\CombinedStatus $combinedStatus, string $ignoreContexts)
     {
         $this->logger         = $logger;
         $this->combinedStatus = $combinedStatus;
+        $this->ignoreContexts = explode(',', $ignoreContexts);
     }
 
     public function refresh(): PromiseInterface

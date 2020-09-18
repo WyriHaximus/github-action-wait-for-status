@@ -20,14 +20,16 @@ final class GetStatusChecksFromCommits
     private LoopInterface $loop;
     private LoggerInterface $logger;
     private string $ignoreActions;
+    private string $ignoreContexts;
     private float $checkInterval;
 
-    public function __construct(LoopInterface $loop, LoggerInterface $logger, string $ignoreActions, float $checkInterval)
+    public function __construct(LoopInterface $loop, LoggerInterface $logger, string $ignoreActions, string $ignoreContexts, float $checkInterval)
     {
-        $this->loop          = $loop;
-        $this->logger        = $logger;
-        $this->ignoreActions = $ignoreActions;
-        $this->checkInterval = $checkInterval;
+        $this->loop           = $loop;
+        $this->logger         = $logger;
+        $this->ignoreActions  = $ignoreActions;
+        $this->ignoreContexts = $ignoreContexts;
+        $this->checkInterval  = $checkInterval;
     }
 
     public function __invoke(Commit $commit): Observable
@@ -42,7 +44,7 @@ final class GetStatusChecksFromCommits
                 return all([
                     'checks' => new Checks($commit, $this->logger, $this->ignoreActions),
                     'status' => $commit->status()->then(function (Commit\CombinedStatus $combinedStatus): StatusCheckInterface {
-                        return new Status($this->logger, $combinedStatus);
+                        return new Status($this->logger, $combinedStatus, $this->ignoreContexts);
                     }),
                 ]);
             })->then(static function (array $statusChecks): PromiseInterface {

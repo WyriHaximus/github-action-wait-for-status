@@ -18,6 +18,7 @@ const SHA = 'GITHUB_SHA';
 const EVENT = 'GITHUB_EVENT_NAME';
 const EVENT_PATH = 'GITHUB_EVENT_PATH';
 const ACTIONS = 'INPUT_IGNOREACTIONS';
+const CONTEXTS = 'INPUT_IGNORECONTEXTS';
 const INTERVAL = 'INPUT_CHECKINTERVAL';
 
 (function () {
@@ -41,6 +42,7 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
     App::boot($loop, $logger, new Token(getenv(TOKEN)))->wait(
         getenv(REPOSITORY),
         getenv(ACTIONS),
+        getenv(CONTEXTS),
         (float) getenv(INTERVAL) > 0.0 ? (float) getenv(INTERVAL) : 13,
         ...$shas,
     )->then(function (string $state) use($logger) {
