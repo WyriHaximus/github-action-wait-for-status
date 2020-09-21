@@ -7,6 +7,10 @@ inputs:
   ignoreActions:
     description: 'CSV of action names to ignore'
     required: true
+  ignoreContexts:
+    description: 'CSV of status contexts to ignore'
+    required: false
+    default: ''
   checkInterval:
     description: 'Time between checks (in seconds)'
     required: false
