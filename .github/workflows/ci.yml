@@ -1,6 +1,6 @@
 name: Continuous Integration
 env:
-  DOCKER_IMAGE: wyrihaximusgithubactions/wait-for-status
+  DOCKER_IMAGE: ghcr.io/wyrihaximus/github-action-wait-for-status
   DOCKER_BUILDKIT: 1
 on:
   push:
@@ -130,7 +130,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.HUB_PASSCODE }}
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | \
-          docker login \
+          docker login ghcr.io \
             --username "${{ secrets.DOCKER_USER }}" \
             --password-stdin
       - name: Push branch image to Docker Hub
