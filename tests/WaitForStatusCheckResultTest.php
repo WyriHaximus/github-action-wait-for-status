@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Tests\GithubAction\WaitForStatus;
 
@@ -10,9 +12,11 @@ use React\EventLoop\TimerInterface;
 use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheckInterface;
 use WyriHaximus\GithubAction\WaitForStatus\WaitForStatusCheckResult;
+
 use function array_shift;
 use function assert;
 use function React\Promise\resolve;
+
 use const WyriHaximus\Constants\Boolean\FALSE_;
 use const WyriHaximus\Constants\Boolean\TRUE_;
 

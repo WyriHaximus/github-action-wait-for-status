@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\GithubAction\WaitForStatus;
 
@@ -9,6 +11,7 @@ use React\Promise\PromiseInterface;
 use Rx\Observable;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheck\Checks;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheck\Status;
+
 use function ApiClients\Tools\Rx\observableFromArray;
 use function ApiClients\Tools\Rx\unwrapObservableFromPromise;
 use function React\Promise\all;

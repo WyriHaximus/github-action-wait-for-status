@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\GithubAction\WaitForStatus;
 
@@ -8,8 +10,10 @@ use ApiClients\Tools\Psr7\HttpStatusExceptions\NotFoundException;
 use Psr\Log\LoggerInterface;
 use React\Promise\PromiseInterface;
 use Throwable;
+
 use function explode;
 use function React\Promise\reject;
+
 use const WyriHaximus\Constants\HTTPStatusCodes\NOT_FOUND;
 
 final class LookUpRepository

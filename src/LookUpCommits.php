@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\GithubAction\WaitForStatus;
 
@@ -6,6 +8,7 @@ use ApiClients\Client\Github\Resource\Async\Repository;
 use Psr\Log\LoggerInterface;
 use React\Promise\PromiseInterface;
 use Rx\Observable;
+
 use function ApiClients\Tools\Rx\observableFromArray;
 use function implode;
 
@@ -26,9 +29,9 @@ final class LookUpCommits
         $this->logger->debug('Locating commit: ' . implode(', ', $this->shas));
 
         return observableFromArray($this->shas)->flatMap(
-            static fn(string $sha): Observable => Observable::fromPromise($repository->specificCommit($sha))
+            static fn (string $sha): Observable => Observable::fromPromise($repository->specificCommit($sha))
         )->toArray()->toPromise()->then(
-            static fn(array $commits): Observable => observableFromArray($commits)
+            static fn (array $commits): Observable => observableFromArray($commits)
         );
     }
 }

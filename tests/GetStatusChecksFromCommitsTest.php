@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Tests\GithubAction\WaitForStatus;
 
@@ -11,6 +13,7 @@ use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
 use WyriHaximus\GithubAction\WaitForStatus\GetStatusChecksFromCommits;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheck\Checks;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheck\Status;
+
 use function assert;
 use function React\Promise\resolve;
 

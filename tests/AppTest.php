@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Tests\GithubAction\WaitForStatus;
 
@@ -8,7 +10,9 @@ use Psr\Log\LoggerInterface;
 use React\EventLoop\Factory;
 use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
 use WyriHaximus\GithubAction\WaitForStatus\App;
+
 use function dirname;
+
 use const DIRECTORY_SEPARATOR;
 
 /** @internal */

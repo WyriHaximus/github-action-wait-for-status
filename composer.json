@@ -23,11 +23,11 @@
     "wyrihaximus/ticking-promise": "^1.6"
   },
   "require-dev": {
-    "wyrihaximus/async-test-utilities": "^2.0"
+    "wyrihaximus/async-test-utilities": "^3.3"
   },
   "config": {
     "platform": {
-      "php": "7.4"
+      "php": "7.4.7"
     },
     "preferred-install": "dist",
     "sort-packages": true

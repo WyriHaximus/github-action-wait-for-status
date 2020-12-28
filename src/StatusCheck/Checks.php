@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\GithubAction\WaitForStatus\StatusCheck;
 
@@ -6,10 +8,12 @@ use ApiClients\Client\Github\Resource\Async\Repository\Commit;
 use Psr\Log\LoggerInterface;
 use React\Promise\PromiseInterface;
 use WyriHaximus\GithubAction\WaitForStatus\StatusCheckInterface;
+
 use function assert;
 use function count;
 use function explode;
 use function in_array;
+
 use const WyriHaximus\Constants\Boolean\FALSE_;
 use const WyriHaximus\Constants\Boolean\TRUE_;
 
