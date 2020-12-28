@@ -10,15 +10,16 @@
     },
     "mutators": {
         "@default": true,
+        "InstanceOf_": false,
         "Continue_": {
             "ignore": [
-                "WyriHaximus\\GithubAction\\WaitForStatus\\StatusCheck\\Checks::refresh::50"
+                "WyriHaximus\\GithubAction\\WaitForStatus\\StatusCheck\\Checks::refresh"
             ]
         },
         "MethodCallRemoval": {
             "ignore": [
-                "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait::57",
-                "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait::92"
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait",
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::wait"
             ]
         }
     }
