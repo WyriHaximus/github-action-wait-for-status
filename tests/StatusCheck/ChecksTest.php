@@ -58,6 +58,32 @@ final class ChecksTest extends AsyncTestCase
     /**
      * @test
      */
+    public function happySkippedFlow(): void
+    {
+        $logger = $this->logger->reveal();
+        assert($logger instanceof LoggerInterface);
+        $this->logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
+        $this->logger->debug('Check "qa" has the following status "completed" and conclusion "skipped"')->shouldBeCalled();
+        $this->logger->debug('All checks completed, marking resolve and success')->shouldBeCalled();
+        $commit = $this->commit->reveal();
+        assert($commit instanceof Commit);
+        $check = $this->check->reveal();
+        assert($check instanceof Commit\Check);
+        $this->check->name()->shouldBeCalled()->willReturn('qa');
+        $this->check->status()->shouldBeCalled()->willReturn('completed');
+        $this->check->conclusion()->shouldBeCalled()->willReturn('skipped');
+        $this->commit->checks()->shouldBeCalled()->willReturn(observableFromArray([$check]));
+        $checks = new Checks($commit, $logger, '');
+        self::assertFalse($checks->hasResolved());
+        self::assertFalse($checks->isSuccessful());
+        $checks->refresh();
+        self::assertTrue($checks->hasResolved());
+        self::assertTrue($checks->isSuccessful());
+    }
+
+    /**
+     * @test
+     */
     public function failed(): void
     {
         $logger = $this->logger->reveal();
