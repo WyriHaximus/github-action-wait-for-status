@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\GithubAction\WaitForStatus;
 
@@ -15,12 +17,14 @@ use React\Stream\ReadableStreamInterface;
 use Safe\DateTimeImmutable;
 use Throwable;
 use WyriHaximus\PSR3\CallableThrowableLogger\CallableThrowableLogger;
+
 use function ApiClients\Tools\Rx\unwrapObservableFromPromise;
 use function React\Promise\all;
 use function React\Promise\resolve;
 use function React\Promise\Stream\buffer;
 use function Safe\sprintf;
 use function strpos;
+
 use const DATE_RFC3339_EXTENDED;
 use const WyriHaximus\Constants\Boolean\FALSE_;
 use const WyriHaximus\Constants\Numeric\ONE;

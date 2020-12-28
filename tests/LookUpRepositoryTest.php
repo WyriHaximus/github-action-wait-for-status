@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Tests\GithubAction\WaitForStatus;
 
@@ -9,6 +11,7 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Log\LoggerInterface;
 use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
 use WyriHaximus\GithubAction\WaitForStatus\LookUpRepository;
+
 use function assert;
 use function React\Promise\resolve;
 
