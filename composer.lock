@@ -7230,6 +7230,46 @@
             "time": "2020-11-20T17:15:57+00:00"
         },
         {
+            "name": "jakobbuis/simple-slow-test-reporter",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jakobbuis/simple-slow-test-reporter.git",
+                "reference": "7111cb24f4670ca455f5578710022311f78ef1c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jakobbuis/simple-slow-test-reporter/zipball/7111cb24f4670ca455f5578710022311f78ef1c4",
+                "reference": "7111cb24f4670ca455f5578710022311f78ef1c4",
+                "shasum": ""
+            },
+            "require": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SSTR\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakob Buis",
+                    "email": "jakob@jakobbuis.nl"
+                }
+            ],
+            "description": "Reports slow tests in your PHPUnit testsuite",
+            "support": {
+                "issues": "https://github.com/jakobbuis/simple-slow-test-reporter/issues",
+                "source": "https://github.com/jakobbuis/simple-slow-test-reporter/tree/v1.0.0"
+            },
+            "time": "2020-12-26T16:20:53+00:00"
+        },
+        {
             "name": "jangregor/phpstan-prophecy",
             "version": "0.6.2",
             "source": {
@@ -9333,27 +9373,27 @@
         },
         {
             "name": "roave/infection-static-analysis-plugin",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/infection-static-analysis-plugin.git",
-                "reference": "4f2771c7750f450a8e144012ee77b4ad2da55394"
+                "reference": "d8e1351f995f6d1e6251ec526110e3382dd04ab5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/infection-static-analysis-plugin/zipball/4f2771c7750f450a8e144012ee77b4ad2da55394",
-                "reference": "4f2771c7750f450a8e144012ee77b4ad2da55394",
+                "url": "https://api.github.com/repos/Roave/infection-static-analysis-plugin/zipball/d8e1351f995f6d1e6251ec526110e3382dd04ab5",
+                "reference": "d8e1351f995f6d1e6251ec526110e3382dd04ab5",
                 "shasum": ""
             },
             "require": {
                 "infection/infection": "0.20.2",
                 "ocramius/package-versions": "^1.9.0 || ^2.0.0",
                 "php": "~7.4.7|~8.0.0",
-                "vimeo/psalm": "^4.2.1"
+                "vimeo/psalm": "^4.3.2"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^8.2.0",
-                "phpunit/phpunit": "^9.4.3"
+                "phpunit/phpunit": "^9.5.0"
             },
             "bin": [
                 "bin/roave-infection-static-analysis-plugin"
@@ -9377,9 +9417,9 @@
             "description": "Static analysis on top of mutation testing - prevents escaped mutants from being invalid according to static analysis",
             "support": {
                 "issues": "https://github.com/Roave/infection-static-analysis-plugin/issues",
-                "source": "https://github.com/Roave/infection-static-analysis-plugin/tree/1.6.0"
+                "source": "https://github.com/Roave/infection-static-analysis-plugin/tree/1.7.0"
             },
-            "time": "2020-11-27T23:23:33+00:00"
+            "time": "2021-01-04T10:34:30+00:00"
         },
         {
             "name": "sanmai/pipeline",
@@ -12140,16 +12180,16 @@
         },
         {
             "name": "wyrihaximus/async-test-utilities",
-            "version": "3.3.2",
+            "version": "3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-async-test-utilities.git",
-                "reference": "367f22c7507ce491fe29aa683a6bc6b089e7cf5a"
+                "reference": "cd33c61d9fbdebc94d5c390a2250c11565667d12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/367f22c7507ce491fe29aa683a6bc6b089e7cf5a",
-                "reference": "367f22c7507ce491fe29aa683a6bc6b089e7cf5a",
+                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/cd33c61d9fbdebc94d5c390a2250c11565667d12",
+                "reference": "cd33c61d9fbdebc94d5c390a2250c11565667d12",
                 "shasum": ""
             },
             "require": {
@@ -12158,7 +12198,7 @@
                 "phpunit/phpunit": "^9.4",
                 "react/event-loop": "^1.1",
                 "react/promise": "^2.8",
-                "wyrihaximus/test-utilities": "^3.3.3"
+                "wyrihaximus/test-utilities": "^3.4.0"
             },
             "require-dev": {
                 "wyrihaximus/iterator-or-array-to-array": "^1.1"
@@ -12182,7 +12222,7 @@
             "description": "Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-async-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.3.2"
+                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.3.3"
             },
             "funding": [
                 {
@@ -12190,7 +12230,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-23T08:01:26+00:00"
+            "time": "2021-01-04T16:21:56+00:00"
         },
         {
             "name": "wyrihaximus/coding-standard",
@@ -12276,27 +12316,28 @@
         },
         {
             "name": "wyrihaximus/test-utilities",
-            "version": "3.3.3",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-test-utilities.git",
-                "reference": "581a0d0416aa42b879cf660d13c4592e95f50cf6"
+                "reference": "b9e9680c63261e7e3a4fa910036772d85d582d65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-test-utilities/zipball/581a0d0416aa42b879cf660d13c4592e95f50cf6",
-                "reference": "581a0d0416aa42b879cf660d13c4592e95f50cf6",
+                "url": "https://api.github.com/repos/WyriHaximus/php-test-utilities/zipball/b9e9680c63261e7e3a4fa910036772d85d582d65",
+                "reference": "b9e9680c63261e7e3a4fa910036772d85d582d65",
                 "shasum": ""
             },
             "require": {
                 "composer/composer": "^1.10.19",
-                "ergebnis/composer-normalize": "^2.11.0",
+                "ergebnis/composer-normalize": "^2.13.2",
                 "icanhazstring/composer-unused": "^0.7.5",
                 "infection/infection": "^0.20.1",
+                "jakobbuis/simple-slow-test-reporter": "^1.0",
                 "maglnet/composer-require-checker": "^2.1.0",
                 "nunomaduro/collision": "^5.1.0",
                 "php": "^8 || ^7.4",
-                "php-coveralls/php-coveralls": "^2.4.2",
+                "php-coveralls/php-coveralls": "^2.4.3",
                 "php-parallel-lint/php-console-highlighter": "^0.5",
                 "php-parallel-lint/php-parallel-lint": "^1.2.0",
                 "phpspec/prophecy": "^1.12.2",
@@ -12305,10 +12346,10 @@
                 "phpunit/phpunit": "^9.5.0",
                 "psalm/plugin-phpunit": "^0.15.0",
                 "roave/backward-compatibility-check": "^5.0.0",
-                "roave/infection-static-analysis-plugin": "^1.6.0",
+                "roave/infection-static-analysis-plugin": "^1.7.0",
                 "squizlabs/php_codesniffer": "^3.5.8",
                 "thecodingmachine/safe": "^1.3.3",
-                "vimeo/psalm": "^4.2.1",
+                "vimeo/psalm": "^4.3.2",
                 "wyrihaximus/coding-standard": "^2.2.0",
                 "wyrihaximus/phpstan-rules-wrapper": "^1.2.2"
             },
@@ -12323,6 +12364,7 @@
                     "friendsofphp/php-cs-fixer",
                     "icanhazstring/composer-unused",
                     "infection/infection",
+                    "jakobbuis/simple-slow-test-reporter",
                     "php-coveralls/php-coveralls",
                     "php-parallel-lint/php-console-highlighter",
                     "php-parallel-lint/php-parallel-lint",
@@ -12356,7 +12398,7 @@
             "description": "🛠️ Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-test-utilities/tree/3.3.3"
+                "source": "https://github.com/WyriHaximus/php-test-utilities/tree/3.4.0"
             },
             "funding": [
                 {
@@ -12364,7 +12406,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-22T07:40:54+00:00"
+            "time": "2021-01-04T15:53:38+00:00"
         }
     ],
     "aliases": [],
