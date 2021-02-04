@@ -12189,16 +12189,16 @@
         },
         {
             "name": "wyrihaximus/async-test-utilities",
-            "version": "3.4.4",
+            "version": "3.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-async-test-utilities.git",
-                "reference": "39ce010bdec2c64f9fb020d86a9b74a0f27931b2"
+                "reference": "730249e9269380e772cab99124d30db220063804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/39ce010bdec2c64f9fb020d86a9b74a0f27931b2",
-                "reference": "39ce010bdec2c64f9fb020d86a9b74a0f27931b2",
+                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/730249e9269380e772cab99124d30db220063804",
+                "reference": "730249e9269380e772cab99124d30db220063804",
                 "shasum": ""
             },
             "require": {
@@ -12231,7 +12231,7 @@
             "description": "Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-async-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.4"
+                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.5"
             },
             "funding": [
                 {
@@ -12239,7 +12239,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-02T05:24:01+00:00"
+            "time": "2021-02-03T05:16:44+00:00"
         },
         {
             "name": "wyrihaximus/coding-standard",
