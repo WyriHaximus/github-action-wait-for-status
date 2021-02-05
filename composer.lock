@@ -1956,16 +1956,16 @@
         },
         {
             "name": "jean85/pretty-package-versions",
-            "version": "1.5.1",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jean85/pretty-package-versions.git",
-                "reference": "a917488320c20057da87f67d0d40543dd9427f7a"
+                "reference": "1e0104b46f045868f11942aea058cd7186d6c303"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/a917488320c20057da87f67d0d40543dd9427f7a",
-                "reference": "a917488320c20057da87f67d0d40543dd9427f7a",
+                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/1e0104b46f045868f11942aea058cd7186d6c303",
+                "reference": "1e0104b46f045868f11942aea058cd7186d6c303",
                 "shasum": ""
             },
             "require": {
@@ -2005,9 +2005,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Jean85/pretty-package-versions/issues",
-                "source": "https://github.com/Jean85/pretty-package-versions/tree/1.5.1"
+                "source": "https://github.com/Jean85/pretty-package-versions/tree/1.6.0"
             },
-            "time": "2020-09-14T08:43:34+00:00"
+            "time": "2021-02-04T16:20:16+00:00"
         },
         {
             "name": "jetbrains/phpstorm-stubs",
@@ -12189,16 +12189,16 @@
         },
         {
             "name": "wyrihaximus/async-test-utilities",
-            "version": "3.4.5",
+            "version": "3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-async-test-utilities.git",
-                "reference": "730249e9269380e772cab99124d30db220063804"
+                "reference": "0877b643fcabeef7aae0b87221bfc29a2e8cde48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/730249e9269380e772cab99124d30db220063804",
-                "reference": "730249e9269380e772cab99124d30db220063804",
+                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/0877b643fcabeef7aae0b87221bfc29a2e8cde48",
+                "reference": "0877b643fcabeef7aae0b87221bfc29a2e8cde48",
                 "shasum": ""
             },
             "require": {
@@ -12207,7 +12207,7 @@
                 "phpunit/phpunit": "^9.5",
                 "react/event-loop": "^1.1",
                 "react/promise": "^2.8",
-                "wyrihaximus/test-utilities": "^3.5.4"
+                "wyrihaximus/test-utilities": "^3.5.5"
             },
             "require-dev": {
                 "wyrihaximus/iterator-or-array-to-array": "^1.1"
@@ -12231,7 +12231,7 @@
             "description": "Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-async-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.5"
+                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.6"
             },
             "funding": [
                 {
@@ -12239,7 +12239,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-03T05:16:44+00:00"
+            "time": "2021-02-04T05:21:33+00:00"
         },
         {
             "name": "wyrihaximus/coding-standard",
