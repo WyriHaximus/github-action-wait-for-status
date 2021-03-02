@@ -12190,16 +12190,16 @@
         },
         {
             "name": "wyrihaximus/async-test-utilities",
-            "version": "3.4.14",
+            "version": "3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-async-test-utilities.git",
-                "reference": "04f28885ba81155b20ee648eadeb787cd8247b7e"
+                "reference": "5539187c74650c5c80f089762d5ce3c8ca8999a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/04f28885ba81155b20ee648eadeb787cd8247b7e",
-                "reference": "04f28885ba81155b20ee648eadeb787cd8247b7e",
+                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/5539187c74650c5c80f089762d5ce3c8ca8999a1",
+                "reference": "5539187c74650c5c80f089762d5ce3c8ca8999a1",
                 "shasum": ""
             },
             "require": {
@@ -12208,7 +12208,7 @@
                 "phpunit/phpunit": "^9.5",
                 "react/event-loop": "^1.1",
                 "react/promise": "^2.8",
-                "wyrihaximus/test-utilities": "^3.5.13"
+                "wyrihaximus/test-utilities": "^3.5.14"
             },
             "require-dev": {
                 "wyrihaximus/iterator-or-array-to-array": "^1.1"
@@ -12232,7 +12232,7 @@
             "description": "Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-async-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.14"
+                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.15"
             },
             "funding": [
                 {
@@ -12240,7 +12240,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-26T05:15:31+00:00"
+            "time": "2021-03-01T05:39:01+00:00"
         },
         {
             "name": "wyrihaximus/coding-standard",
