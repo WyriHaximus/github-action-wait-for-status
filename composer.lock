@@ -5450,16 +5450,16 @@
         },
         {
             "name": "amphp/byte-stream",
-            "version": "v1.8.0",
+            "version": "v1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/byte-stream.git",
-                "reference": "f0c20cf598a958ba2aa8c6e5a71c697d652c7088"
+                "reference": "acbd8002b3536485c997c4e019206b3f10ca15bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/byte-stream/zipball/f0c20cf598a958ba2aa8c6e5a71c697d652c7088",
-                "reference": "f0c20cf598a958ba2aa8c6e5a71c697d652c7088",
+                "url": "https://api.github.com/repos/amphp/byte-stream/zipball/acbd8002b3536485c997c4e019206b3f10ca15bd",
+                "reference": "acbd8002b3536485c997c4e019206b3f10ca15bd",
                 "shasum": ""
             },
             "require": {
@@ -5515,9 +5515,15 @@
             "support": {
                 "irc": "irc://irc.freenode.org/amphp",
                 "issues": "https://github.com/amphp/byte-stream/issues",
-                "source": "https://github.com/amphp/byte-stream/tree/master"
+                "source": "https://github.com/amphp/byte-stream/tree/v1.8.1"
             },
-            "time": "2020-06-29T18:35:05+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/amphp",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-03-30T17:13:30+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -5663,16 +5669,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.20",
+            "version": "1.10.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "e55d297525f0ecc805c813a0f63a40114fd670f6"
+                "reference": "04021432f4a9cbd9351dd166b8c193f42c36a39c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/e55d297525f0ecc805c813a0f63a40114fd670f6",
-                "reference": "e55d297525f0ecc805c813a0f63a40114fd670f6",
+                "url": "https://api.github.com/repos/composer/composer/zipball/04021432f4a9cbd9351dd166b8c193f42c36a39c",
+                "reference": "04021432f4a9cbd9351dd166b8c193f42c36a39c",
                 "shasum": ""
             },
             "require": {
@@ -5742,7 +5748,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/composer/issues",
-                "source": "https://github.com/composer/composer/tree/1.10.20"
+                "source": "https://github.com/composer/composer/tree/1.10.21"
             },
             "funding": [
                 {
@@ -5758,7 +5764,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T14:41:06+00:00"
+            "time": "2021-04-01T07:16:35+00:00"
         },
         {
             "name": "composer/semver",
@@ -6679,16 +6685,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3"
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
-                "reference": "f6e14679f948d8a5cfb866fa7065a30c66bd64d3",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
+                "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
                 "shasum": ""
             },
             "require": {
@@ -6738,7 +6744,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.11.0"
+                "source": "https://github.com/filp/whoops/tree/2.12.0"
             },
             "funding": [
                 {
@@ -6746,7 +6752,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-19T12:00:00+00:00"
+            "time": "2021-03-30T12:00:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -12192,16 +12198,16 @@
         },
         {
             "name": "wyrihaximus/async-test-utilities",
-            "version": "3.4.22",
+            "version": "3.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-async-test-utilities.git",
-                "reference": "0620b025f5da8f645b7f5fbb6dc23afce11bb7e0"
+                "reference": "672572a7ccc8e0d2cd17a3f9c8a97c4614e467db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/0620b025f5da8f645b7f5fbb6dc23afce11bb7e0",
-                "reference": "0620b025f5da8f645b7f5fbb6dc23afce11bb7e0",
+                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/672572a7ccc8e0d2cd17a3f9c8a97c4614e467db",
+                "reference": "672572a7ccc8e0d2cd17a3f9c8a97c4614e467db",
                 "shasum": ""
             },
             "require": {
@@ -12210,7 +12216,7 @@
                 "phpunit/phpunit": "^9.5",
                 "react/event-loop": "^1.1",
                 "react/promise": "^2.8",
-                "wyrihaximus/test-utilities": "^3.6.7"
+                "wyrihaximus/test-utilities": "^3.6.8"
             },
             "require-dev": {
                 "wyrihaximus/iterator-or-array-to-array": "^1.1"
@@ -12234,7 +12240,7 @@
             "description": "Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-async-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.22"
+                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/3.4.23"
             },
             "funding": [
                 {
@@ -12242,7 +12248,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-28T20:28:43+00:00"
+            "time": "2021-03-31T23:19:37+00:00"
         },
         {
             "name": "wyrihaximus/coding-standard",
@@ -12328,16 +12334,16 @@
         },
         {
             "name": "wyrihaximus/test-utilities",
-            "version": "3.6.7",
+            "version": "3.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-test-utilities.git",
-                "reference": "b09988d89d035464c15e9114e96830bb925a70c6"
+                "reference": "5180fec8f758f7f42ee1797668c2a979e29d1111"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-test-utilities/zipball/b09988d89d035464c15e9114e96830bb925a70c6",
-                "reference": "b09988d89d035464c15e9114e96830bb925a70c6",
+                "url": "https://api.github.com/repos/WyriHaximus/php-test-utilities/zipball/5180fec8f758f7f42ee1797668c2a979e29d1111",
+                "reference": "5180fec8f758f7f42ee1797668c2a979e29d1111",
                 "shasum": ""
             },
             "require": {
@@ -12361,7 +12367,7 @@
                 "roave/infection-static-analysis-plugin": "^1.7.1",
                 "squizlabs/php_codesniffer": "^3.5.8",
                 "thecodingmachine/safe": "^1.3.3",
-                "vimeo/psalm": "^4.6.4",
+                "vimeo/psalm": "^4.7.0",
                 "wyrihaximus/coding-standard": "^2.3.0",
                 "wyrihaximus/phpstan-rules-wrapper": "^1.2.2"
             },
@@ -12410,7 +12416,7 @@
             "description": "🛠️ Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-test-utilities/tree/3.6.7"
+                "source": "https://github.com/WyriHaximus/php-test-utilities/tree/3.6.8"
             },
             "funding": [
                 {
@@ -12418,7 +12424,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-28T19:50:21+00:00"
+            "time": "2021-03-31T21:35:50+00:00"
         }
     ],
     "aliases": [],
