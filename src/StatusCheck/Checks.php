@@ -50,7 +50,7 @@ final class Checks implements StatusCheckInterface
                     $return = TRUE_;
                 }
 
-                if ($status->status() !== 'completed' || $status->conclusion() === 'success' || $status->conclusion() === 'skipped') {
+                if ($status->status() !== 'completed' || $status->conclusion() === 'success' || $status->conclusion() === 'skipped' || $status->conclusion() === 'neutral') {
                     continue;
                 }
 
