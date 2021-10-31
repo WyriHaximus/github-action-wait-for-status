@@ -13,7 +13,7 @@ This action supports the following options.
 
 ### ignoreActions
 
-List of actions to ignore the status from, mainly to exclude the action this action is used in preventing it from waiting forever.
+List of actions to ignore the status from, mainly to exclude the action this action is used in preventing it from waiting forever. Actions are specified by the `name` of the job.
 
 * *Required*: `Yes`
 * *Type*: `CSV`
@@ -69,13 +69,14 @@ on:
   status: {}
 jobs:
   automerge:
+    name: Automerge PRs
     runs-on: ubuntu-latest
     steps:
       - name: 'Wait for status checks'
         id: waitforstatuschecks
         uses: "WyriHaximus/github-action-wait-for-status@v2"
         with:
-          ignoreActions: automerge
+          ignoreActions: Automerge PRs
           checkInterval: 13
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
