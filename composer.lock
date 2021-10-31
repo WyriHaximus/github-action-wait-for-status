@@ -2155,16 +2155,16 @@
         },
         {
             "name": "lcobucci/jwt",
-            "version": "3.4.2",
+            "version": "3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "17cb82dd625ccb17c74bf8f38563d3b260306483"
+                "reference": "3ef8657a78278dfeae7707d51747251db4176240"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/17cb82dd625ccb17c74bf8f38563d3b260306483",
-                "reference": "17cb82dd625ccb17c74bf8f38563d3b260306483",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/3ef8657a78278dfeae7707d51747251db4176240",
+                "reference": "3ef8657a78278dfeae7707d51747251db4176240",
                 "shasum": ""
             },
             "require": {
@@ -2216,7 +2216,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lcobucci/jwt/issues",
-                "source": "https://github.com/lcobucci/jwt/tree/3.4.2"
+                "source": "https://github.com/lcobucci/jwt/tree/3.4.6"
             },
             "funding": [
                 {
@@ -2228,7 +2228,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-03T13:43:45+00:00"
+            "time": "2021-09-28T19:18:28+00:00"
         },
         {
             "name": "league/tactician",
