@@ -10,7 +10,7 @@ use ApiClients\Client\Github\AuthenticationInterface;
 use ApiClients\Client\Github\RateLimitState;
 use Clue\React\Buzz\Message\ResponseException;
 use Psr\Log\LoggerInterface;
-use React\EventLoop\LoopInterface;
+use React\EventLoop\Loop;
 use React\EventLoop\TimerInterface;
 use React\Promise\PromiseInterface;
 use React\Stream\ReadableStreamInterface;
@@ -32,20 +32,17 @@ use const WyriHaximus\Constants\Numeric\ZERO;
 
 final class App
 {
-    private LoopInterface $loop;
-
     private LoggerInterface $logger;
 
     private AsyncClientInterface $github;
 
-    public static function boot(LoopInterface $loop, LoggerInterface $logger, AuthenticationInterface $auth): App
+    public static function boot(LoggerInterface $logger, AuthenticationInterface $auth): App
     {
-        return new self($loop, $logger, AsyncClient::create($loop, $auth));
+        return new self($logger, AsyncClient::create(Loop::get(), $auth));
     }
 
-    private function __construct(LoopInterface $loop, LoggerInterface $logger, AsyncClientInterface $github)
+    private function __construct(LoggerInterface $logger, AsyncClientInterface $github)
     {
-        $this->loop   = $loop;
         $this->logger = $logger;
         $this->github = $github;
     }
@@ -57,8 +54,8 @@ final class App
          * @psalm-suppress MissingClosureParamType
          * @psalm-suppress MissingClosureReturnType
          */
-        $finally = function ($status) use ($timer) {
-            $this->loop->cancelTimer($timer);
+        $finally = static function ($status) use ($timer) {
+            Loop::cancelTimer($timer);
 
             return $status;
         };
@@ -66,9 +63,9 @@ final class App
         return unwrapObservableFromPromise((new LookUpRepository($repository, $this->logger))($this->github)->then(
             new LookUpCommits($this->logger, ...$shas)
         ))->flatMap(
-            new GetStatusChecksFromCommits($this->loop, $this->logger, $ignoreActions, $checkInterval)
+            new GetStatusChecksFromCommits(Loop::get(), $this->logger, $ignoreActions, $checkInterval)
         )->map(
-            new WaitForStatusCheckResult($this->loop, $this->logger, $checkInterval)
+            new WaitForStatusCheckResult(Loop::get(), $this->logger, $checkInterval)
         )->toArray()->toPromise()->then(static function (array $promises): PromiseInterface {
             return all($promises);
         })->then(static function (array $booleans): string {
@@ -118,7 +115,7 @@ final class App
     {
         $previousState = '';
 
-        return $this->loop->addPeriodicTimer(ONE, function () use (&$previousState): void {
+        return Loop::addPeriodicTimer(ONE, function () use (&$previousState): void {
             $rateLimitState = $this->github->getRateLimitState();
             $newState       = $rateLimitState->getRemaining() . '_' . $rateLimitState->getReset();
             if ($previousState === $newState) {

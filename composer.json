@@ -10,7 +10,7 @@
     "clue/buzz-react": "^2.7",
     "monolog/monolog": "^2.0",
     "psr/log": "^1.1",
-    "react/event-loop": "^1.1",
+    "react/event-loop": "^1.2",
     "react/promise": "^2.7",
     "react/promise-stream": "^1.2",
     "react/stream": "^1.1",
@@ -23,7 +23,7 @@
     "wyrihaximus/ticking-promise": "^1.6"
   },
   "require-dev": {
-    "wyrihaximus/async-test-utilities": "^3.3"
+    "wyrihaximus/async-test-utilities": "^4"
   },
   "config": {
     "platform": {

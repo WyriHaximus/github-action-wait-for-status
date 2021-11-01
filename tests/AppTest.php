@@ -7,7 +7,6 @@ namespace WyriHaximus\Tests\GithubAction\WaitForStatus;
 use ApiClients\Client\Github\Authentication\Token;
 use Prophecy\Argument;
 use Psr\Log\LoggerInterface;
-use React\EventLoop\Factory;
 use WyriHaximus\AsyncTestUtilities\AsyncTestCase;
 use WyriHaximus\GithubAction\WaitForStatus\App;
 
@@ -23,7 +22,6 @@ final class AppTest extends AsyncTestCase
      */
     public function success(): void
     {
-        $loop   = Factory::create();
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(Argument::containingString('Rate limit (remaining/limit/reset):'))->shouldBeCalled();
         $logger->debug('Looking up owner: WyriHaximus')->shouldBeCalled();
@@ -35,13 +33,12 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Check "qa (7.3)" has the following status "completed" and conclusion "success"')->shouldBeCalled();
         $logger->debug('All checks completed, marking resolve and success')->shouldBeCalled();
         $result = $this->await(
-            App::boot($loop, $logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
+            App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
                 'WyriHaximus/github-action-wait-for-status',
                 'wait',
                 1,
                 'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64'
             ),
-            $loop,
             30
         );
 
@@ -53,7 +50,6 @@ final class AppTest extends AsyncTestCase
      */
     public function failure(): void
     {
-        $loop   = Factory::create();
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(Argument::containingString('Rate limit (remaining/limit/reset):'))->shouldBeCalled();
         $logger->debug('Looking up owner: WyriHaximus')->shouldBeCalled();
@@ -65,13 +61,12 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Check "Travis CI - Branch" has the following status "completed" and conclusion "action_required"')->shouldBeCalled();
         $logger->debug('Check (Travis CI - Branch) failed, marking resolve and failure')->shouldBeCalled();
         $result = $this->await(
-            App::boot($loop, $logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
+            App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
                 'WyriHaximus/php-broadcast',
                 'wait',
                 1,
                 '67bdf304b34567e0f434bc0f9f19d3022cc1aa6c'
             ),
-            $loop,
             30
         );
 
@@ -83,7 +78,6 @@ final class AppTest extends AsyncTestCase
      */
     public function error(): void
     {
-        $loop   = Factory::create();
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(Argument::containingString('Rate limit (remaining/limit/reset):'));
         $logger->debug('Error reason: {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}')->shouldBeCalled();
@@ -94,13 +88,12 @@ final class AppTest extends AsyncTestCase
             Argument::type('array')
         )->shouldBeCalled();
         $result = $this->await(
-            App::boot($loop, $logger->reveal(), new Token('FAKE_TOKEN_TO_FORCE_ERROR'))->wait(
+            App::boot($logger->reveal(), new Token('FAKE_TOKEN_TO_FORCE_ERROR'))->wait(
                 'WyriHaximus/github-action-wait-for-status',
                 'wait',
                 1,
                 'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64'
             ),
-            $loop,
             30
         );
 
