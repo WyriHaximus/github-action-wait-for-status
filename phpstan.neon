@@ -1,4 +1,5 @@
 parameters:
+	checkGenericClassInNonGenericObjectType: false
 	ignoreErrors:
 		- '#Parameter \#2 \$interval of function WyriHaximus\\React\\timedPromise expects int, float given.#'
 		- '#Call to an undefined method Rx\\ObservableInterface::filter\(\).#'
