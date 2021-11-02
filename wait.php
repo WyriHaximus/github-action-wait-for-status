@@ -3,7 +3,7 @@
 use ApiClients\Client\Github\Authentication\Token;
 use Bramus\Monolog\Formatter\ColoredLineFormatter;
 use Monolog\Logger;
-use React\EventLoop\Factory;
+use React\EventLoop\Loop;
 use WyriHaximus\GithubAction\WaitForStatus\App;
 use WyriHaximus\Monolog\FormattedPsrHandler\FormattedPsrHandler;
 use WyriHaximus\React\PSR3\Stdio\StdioLogger;
@@ -21,8 +21,7 @@ const ACTIONS = 'INPUT_IGNOREACTIONS';
 const INTERVAL = 'INPUT_CHECKINTERVAL';
 
 (function () {
-    $loop = Factory::create();
-    $consoleHandler = new FormattedPsrHandler(StdioLogger::create($loop)->withHideLevel(true));
+    $consoleHandler = new FormattedPsrHandler(StdioLogger::create(Loop::get())->withHideLevel(true));
     $consoleHandler->setFormatter(new ColoredLineFormatter(
         null,
         '[%datetime%] %channel%.%level_name%: %message%',
@@ -38,7 +37,7 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
         $logger->notice('Pull Request detected');
         $shas[] = json_decode(file_get_contents(getenv(EVENT_PATH)))->pull_request->head->sha;
     }
-    App::boot($loop, $logger, new Token(getenv(TOKEN)))->wait(
+    App::boot($logger, new Token(getenv(TOKEN)))->wait(
         getenv(REPOSITORY),
         getenv(ACTIONS),
         (float) getenv(INTERVAL) > 0.0 ? (float) getenv(INTERVAL) : 13,
@@ -47,5 +46,4 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
         $logger->info('Final status: ' . $state);
         echo PHP_EOL, '::set-output name=status::' . $state, PHP_EOL;
     })->done();
-    $loop->run();
 })();
