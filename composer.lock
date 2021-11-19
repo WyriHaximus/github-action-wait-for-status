@@ -6126,23 +6126,24 @@
         },
         {
             "name": "composer/spdx-licenses",
-            "version": "1.5.5",
+            "version": "1.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/spdx-licenses.git",
-                "reference": "de30328a7af8680efdc03e396aad24befd513200"
+                "reference": "a30d487169d799745ca7280bc90fdfa693536901"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/de30328a7af8680efdc03e396aad24befd513200",
-                "reference": "de30328a7af8680efdc03e396aad24befd513200",
+                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/a30d487169d799745ca7280bc90fdfa693536901",
+                "reference": "a30d487169d799745ca7280bc90fdfa693536901",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.3.2 || ^7.0 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || 6.5 - 7"
+                "phpstan/phpstan": "^0.12.55",
+                "symfony/phpunit-bridge": "^4.2 || ^5"
             },
             "type": "library",
             "extra": {
@@ -6185,7 +6186,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/spdx-licenses/issues",
-                "source": "https://github.com/composer/spdx-licenses/tree/1.5.5"
+                "source": "https://github.com/composer/spdx-licenses/tree/1.5.6"
             },
             "funding": [
                 {
@@ -6201,7 +6202,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-03T16:04:16+00:00"
+            "time": "2021-11-18T10:14:14+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -7860,35 +7861,36 @@
         },
         {
             "name": "maglnet/composer-require-checker",
-            "version": "3.3.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maglnet/ComposerRequireChecker.git",
-                "reference": "4063254c611acf34f1c15b29b6bcc47d2e7a9a9e"
+                "reference": "f1a5905265b9464d57a7e26ae80b05b7c1411830"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maglnet/ComposerRequireChecker/zipball/4063254c611acf34f1c15b29b6bcc47d2e7a9a9e",
-                "reference": "4063254c611acf34f1c15b29b6bcc47d2e7a9a9e",
+                "url": "https://api.github.com/repos/maglnet/ComposerRequireChecker/zipball/f1a5905265b9464d57a7e26ae80b05b7c1411830",
+                "reference": "f1a5905265b9464d57a7e26ae80b05b7c1411830",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2.0.0",
                 "ext-json": "*",
                 "ext-phar": "*",
-                "nikic/php-parser": "^4.10.2",
+                "nikic/php-parser": "^4.13.0",
                 "php": "^7.4 || ^8.0",
-                "symfony/console": "^5.2.6",
+                "symfony/console": "^5.3.10",
                 "webmozart/assert": "^1.9.1",
-                "webmozart/glob": "^4.3.0"
+                "webmozart/glob": "^4.4.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^9.0.0",
                 "ext-zend-opcache": "*",
-                "mikey179/vfsstream": "^1.6.8",
-                "phpstan/phpstan": "^0.12.85",
-                "phpunit/phpunit": "^9.5.4",
-                "vimeo/psalm": "^4.7.0"
+                "mikey179/vfsstream": "^1.6.10",
+                "phing/phing": "^2.17.0",
+                "phpstan/phpstan": "^1.1.1",
+                "phpunit/phpunit": "^9.5.10",
+                "vimeo/psalm": "^4.12.0"
             },
             "bin": [
                 "bin/composer-require-checker"
@@ -7933,9 +7935,9 @@
             ],
             "support": {
                 "issues": "https://github.com/maglnet/ComposerRequireChecker/issues",
-                "source": "https://github.com/maglnet/ComposerRequireChecker/tree/3.3.0"
+                "source": "https://github.com/maglnet/ComposerRequireChecker/tree/3.5.1"
             },
-            "time": "2021-06-09T11:44:18+00:00"
+            "time": "2021-11-10T12:04:31+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -8543,16 +8545,16 @@
         },
         {
             "name": "php-coveralls/php-coveralls",
-            "version": "v2.4.3",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-coveralls/php-coveralls.git",
-                "reference": "909381bd40a17ae6e9076051f0d73293c1c091af"
+                "reference": "a54881adfb9bb3a01ca72e2832131b33f02da4e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-coveralls/php-coveralls/zipball/909381bd40a17ae6e9076051f0d73293c1c091af",
-                "reference": "909381bd40a17ae6e9076051f0d73293c1c091af",
+                "url": "https://api.github.com/repos/php-coveralls/php-coveralls/zipball/a54881adfb9bb3a01ca72e2832131b33f02da4e4",
+                "reference": "a54881adfb9bb3a01ca72e2832131b33f02da4e4",
                 "shasum": ""
             },
             "require": {
@@ -8560,11 +8562,11 @@
                 "ext-simplexml": "*",
                 "guzzlehttp/guzzle": "^6.0 || ^7.0",
                 "php": "^5.5 || ^7.0 || ^8.0",
-                "psr/log": "^1.0",
-                "symfony/config": "^2.1 || ^3.0 || ^4.0 || ^5.0",
-                "symfony/console": "^2.1 || ^3.0 || ^4.0 || ^5.0",
-                "symfony/stopwatch": "^2.0 || ^3.0 || ^4.0 || ^5.0",
-                "symfony/yaml": "^2.0.5 || ^3.0 || ^4.0 || ^5.0"
+                "psr/log": "^1.0 || ^2.0",
+                "symfony/config": "^2.1 || ^3.0 || ^4.0 || ^5.0 || ^6.0",
+                "symfony/console": "^2.1 || ^3.0 || ^4.0 || ^5.0 || ^6.0",
+                "symfony/stopwatch": "^2.0 || ^3.0 || ^4.0 || ^5.0 || ^6.0",
+                "symfony/yaml": "^2.0.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.35 || ^5.4.3 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
@@ -8620,9 +8622,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-coveralls/php-coveralls/issues",
-                "source": "https://github.com/php-coveralls/php-coveralls/tree/v2.4.3"
+                "source": "https://github.com/php-coveralls/php-coveralls/tree/v2.5.1"
             },
-            "time": "2020-12-24T09:17:03+00:00"
+            "time": "2021-11-10T16:53:56+00:00"
         },
         {
             "name": "php-parallel-lint/php-console-color",
@@ -10363,16 +10365,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "d89cc98761b8cb5a1a235a6b703ae50d34080e65"
+                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/d89cc98761b8cb5a1a235a6b703ae50d34080e65",
-                "reference": "d89cc98761b8cb5a1a235a6b703ae50d34080e65",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/65e8b7db476c5dd267e65eea9cab77584d3cfff9",
+                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9",
                 "shasum": ""
             },
             "require": {
@@ -10421,14 +10423,14 @@
                 }
             ],
             "description": "Provides the functionality to export PHP variables for visualization",
-            "homepage": "http://www.github.com/sebastianbergmann/exporter",
+            "homepage": "https://www.github.com/sebastianbergmann/exporter",
             "keywords": [
                 "export",
                 "exporter"
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.3"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.4"
             },
             "funding": [
                 {
@@ -10436,7 +10438,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:24:23+00:00"
+            "time": "2021-11-11T14:18:36+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -12402,16 +12404,16 @@
         },
         {
             "name": "thecodingmachine/phpstan-strict-rules",
-            "version": "v0.12.1",
+            "version": "v0.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thecodingmachine/phpstan-strict-rules.git",
-                "reference": "4bb334f6f637ebfba83cfdc7392d549a8a3fbba7"
+                "reference": "ed65c3cf33e3b668c5a072d49741965114c881b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thecodingmachine/phpstan-strict-rules/zipball/4bb334f6f637ebfba83cfdc7392d549a8a3fbba7",
-                "reference": "4bb334f6f637ebfba83cfdc7392d549a8a3fbba7",
+                "url": "https://api.github.com/repos/thecodingmachine/phpstan-strict-rules/zipball/ed65c3cf33e3b668c5a072d49741965114c881b5",
+                "reference": "ed65c3cf33e3b668c5a072d49741965114c881b5",
                 "shasum": ""
             },
             "require": {
@@ -12451,9 +12453,9 @@
             "description": "A set of additional rules for PHPStan based on best practices followed at TheCodingMachine",
             "support": {
                 "issues": "https://github.com/thecodingmachine/phpstan-strict-rules/issues",
-                "source": "https://github.com/thecodingmachine/phpstan-strict-rules/tree/master"
+                "source": "https://github.com/thecodingmachine/phpstan-strict-rules/tree/v0.12.2"
             },
-            "time": "2020-09-08T09:14:10+00:00"
+            "time": "2021-11-08T09:01:22+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -12708,20 +12710,21 @@
                 "issues": "https://github.com/webmozart/path-util/issues",
                 "source": "https://github.com/webmozart/path-util/tree/2.3.0"
             },
+            "abandoned": "symfony/filesystem",
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
             "name": "wyrihaximus/async-test-utilities",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-async-test-utilities.git",
-                "reference": "bfcd612dc6e85611d24840992c190a07080ae818"
+                "reference": "42ad122e56d8342691ba694b4d317cccf8e22fb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/bfcd612dc6e85611d24840992c190a07080ae818",
-                "reference": "bfcd612dc6e85611d24840992c190a07080ae818",
+                "url": "https://api.github.com/repos/WyriHaximus/php-async-test-utilities/zipball/42ad122e56d8342691ba694b4d317cccf8e22fb1",
+                "reference": "42ad122e56d8342691ba694b4d317cccf8e22fb1",
                 "shasum": ""
             },
             "require": {
@@ -12730,7 +12733,7 @@
                 "phpunit/phpunit": "^9.5",
                 "react/event-loop": "^1.2",
                 "react/promise": "^2.8",
-                "wyrihaximus/test-utilities": "^3.7.4"
+                "wyrihaximus/test-utilities": "^3.7.6"
             },
             "require-dev": {
                 "wyrihaximus/iterator-or-array-to-array": "^1.2"
@@ -12754,7 +12757,7 @@
             "description": "Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-async-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/4.0.7"
+                "source": "https://github.com/WyriHaximus/php-async-test-utilities/tree/4.0.8"
             },
             "funding": [
                 {
@@ -12762,7 +12765,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-07T13:55:28+00:00"
+            "time": "2021-11-16T08:00:50+00:00"
         },
         {
             "name": "wyrihaximus/coding-standard",
@@ -12854,30 +12857,29 @@
         },
         {
             "name": "wyrihaximus/test-utilities",
-            "version": "3.7.4",
+            "version": "3.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-test-utilities.git",
-                "reference": "2b547512bef0e579cd28a6c5d2ae086cee57f9ae"
+                "reference": "4a900a8f44207c3f0f6a4819676aca7612f4821f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-test-utilities/zipball/2b547512bef0e579cd28a6c5d2ae086cee57f9ae",
-                "reference": "2b547512bef0e579cd28a6c5d2ae086cee57f9ae",
+                "url": "https://api.github.com/repos/WyriHaximus/php-test-utilities/zipball/4a900a8f44207c3f0f6a4819676aca7612f4821f",
+                "reference": "4a900a8f44207c3f0f6a4819676aca7612f4821f",
                 "shasum": ""
             },
             "require": {
-                "composer/composer": "^1.10.23",
                 "dereuromark/composer-prefer-lowest": "^0.1.10",
                 "ergebnis/composer-normalize": "^2.15.0",
                 "icanhazstring/composer-unused": "^0.7.5",
                 "infection/infection": "^0.20.2",
                 "jakobbuis/simple-slow-test-reporter": "^1.0",
-                "maglnet/composer-require-checker": "^3.3.0",
+                "maglnet/composer-require-checker": "^3.5.1",
                 "nunomaduro/collision": "^5.10.0",
                 "orklah/psalm-insane-comparison": "^1.0.3",
                 "php": "^8 || ^7.4",
-                "php-coveralls/php-coveralls": "^2.4.3",
+                "php-coveralls/php-coveralls": "^2.5.1",
                 "php-parallel-lint/php-console-highlighter": "^0.5",
                 "php-parallel-lint/php-parallel-lint": "^1.3.1",
                 "phpspec/prophecy": "^1.14",
@@ -12889,7 +12891,7 @@
                 "roave/infection-static-analysis-plugin": "^1.7.1",
                 "squizlabs/php_codesniffer": "^3.6.1",
                 "thecodingmachine/safe": "^1.3.3",
-                "vimeo/psalm": "^4.11.2",
+                "vimeo/psalm": "^4.12.0",
                 "wyrihaximus/coding-standard": "^2.5.0",
                 "wyrihaximus/phpstan-rules-wrapper": "^1.2.5"
             },
@@ -12900,7 +12902,6 @@
             "extra": {
                 "unused": [
                     "php",
-                    "composer/composer",
                     "dereuromark/composer-prefer-lowest",
                     "friendsofphp/php-cs-fixer",
                     "icanhazstring/composer-unused",
@@ -12940,7 +12941,7 @@
             "description": "🛠️ Test utilities for api-clients packages",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-test-utilities/issues",
-                "source": "https://github.com/WyriHaximus/php-test-utilities/tree/3.7.4"
+                "source": "https://github.com/WyriHaximus/php-test-utilities/tree/3.7.6"
             },
             "funding": [
                 {
@@ -12948,7 +12949,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-07T13:41:45+00:00"
+            "time": "2021-11-15T22:30:45+00:00"
         }
     ],
     "aliases": [],
