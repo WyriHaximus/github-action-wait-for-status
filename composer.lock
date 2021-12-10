@@ -4139,16 +4139,16 @@
         },
         {
             "name": "reactivex/rxphp",
-            "version": "2.0.9",
+            "version": "2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ReactiveX/RxPHP.git",
-                "reference": "3eedf2640b85dfaf4718529e3932756cd8c2addf"
+                "reference": "eee4e762466b6e9e7516f2432b954b81fbabdda1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ReactiveX/RxPHP/zipball/3eedf2640b85dfaf4718529e3932756cd8c2addf",
-                "reference": "3eedf2640b85dfaf4718529e3932756cd8c2addf",
+                "url": "https://api.github.com/repos/ReactiveX/RxPHP/zipball/eee4e762466b6e9e7516f2432b954b81fbabdda1",
+                "reference": "eee4e762466b6e9e7516f2432b954b81fbabdda1",
                 "shasum": ""
             },
             "require": {
@@ -4201,9 +4201,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ReactiveX/RxPHP/issues",
-                "source": "https://github.com/ReactiveX/RxPHP/tree/2.0.9"
+                "source": "https://github.com/ReactiveX/RxPHP/tree/2.0.10"
             },
-            "time": "2021-03-05T14:44:06+00:00"
+            "time": "2021-12-10T00:39:45+00:00"
         },
         {
             "name": "ringcentral/psr7",
