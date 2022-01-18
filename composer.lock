@@ -5125,26 +5125,26 @@
         },
         {
             "name": "wyrihaximus/psr-3-callable-throwable-logger",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger.git",
-                "reference": "5d32094987ca6e3a7ba5595815b3fd18dea9b04a"
+                "reference": "ca426eb940fa9191f6b045360655ad34e74a2d0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-psr-3-callable-throwable-logger/zipball/5d32094987ca6e3a7ba5595815b3fd18dea9b04a",
-                "reference": "5d32094987ca6e3a7ba5595815b3fd18dea9b04a",
+                "url": "https://api.github.com/repos/WyriHaximus/php-psr-3-callable-throwable-logger/zipball/ca426eb940fa9191f6b045360655ad34e74a2d0a",
+                "reference": "ca426eb940fa9191f6b045360655ad34e74a2d0a",
                 "shasum": ""
             },
             "require": {
                 "php": "^8 || ^7.4.7",
-                "psr/log": "^1.0",
+                "psr/log": "^3 || ^2 || ^1",
                 "thecodingmachine/safe": "^1.0 || ^0.1.16"
             },
             "require-dev": {
                 "wyrihaximus/psr-3-utilities": "^1.0",
-                "wyrihaximus/test-utilities": "^3.7.3"
+                "wyrihaximus/test-utilities": "^5 || ^3.7.3"
             },
             "type": "library",
             "autoload": {
@@ -5165,7 +5165,7 @@
             "description": "callable throwable decorator around a PSR-3 logger (to be used with react/promise and reactivex/rxphp)",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger/issues",
-                "source": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger/tree/2.2.0"
+                "source": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger/tree/2.3.0"
             },
             "funding": [
                 {
@@ -5173,7 +5173,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-10T22:24:39+00:00"
+            "time": "2022-01-17T21:49:34+00:00"
         },
         {
             "name": "wyrihaximus/psr-3-utilities",
@@ -13046,5 +13046,5 @@
     "platform-overrides": {
         "php": "7.4.7"
     },
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
