@@ -162,7 +162,10 @@ jobs:
         with:
           tag_name: ${{ matrix.version }}
           release_name: ${{ matrix.version }}
-          body: Reference tag to ${{ env.MILESTONE }}
+          body: |
+            Reference tag to ${{ env.MILESTONE }}
+
+            Note: this tag will not be updated when new v1.x.x releases are tagged. Instead, it relies on providing the latest v1.x.x releases through mutable Docker image tags. Please see Docker Hub and compare the latest 3 versions and their hashes.
           draft: false
           prerelease: false
           commitish: release/${{ matrix.version }}
