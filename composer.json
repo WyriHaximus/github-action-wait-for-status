@@ -3,7 +3,7 @@
   "description": "GitHub Action that waits for successful commit statuses and checks.",
   "require": {
     "php": "^7.4",
-    "api-clients/github": "dev-master",
+    "api-clients/github": "dev-main",
     "api-clients/psr7-http-status-exceptions": "^1.0",
     "api-clients/rx": "^2.2.1",
     "bramus/monolog-colored-line-formatter": "^3.0",
@@ -39,17 +39,15 @@
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true,
       "composer/package-versions-deprecated": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
       "ergebnis/composer-normalize": true,
       "icanhazstring/composer-unused": true,
       "infection/extension-installer": true
     },
     "platform": {
       "php": "7.4.7"
-    },
-    "preferred-install": "dist",
-    "sort-packages": true
+    }
   },
   "scripts": {
     "post-install-cmd": [
