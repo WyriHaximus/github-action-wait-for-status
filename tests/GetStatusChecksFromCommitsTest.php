@@ -60,7 +60,7 @@ final class GetStatusChecksFromCommitsTest extends AsyncTestCase
         $this->commit->sha()->shouldBeCalled()->willReturn(self::SHA);
         $this->commit->refresh()->shouldBeCalled()->willReturn(resolve($commit));
         $this->commit->status()->shouldBeCalled()->willReturn(resolve($combinedStatus));
-        $promise = (new GetStatusChecksFromCommits($loop, $logger, self::IGNORE_ACTIONS, 0.1))($commit)->toArray()->toPromise();
+        $promise = (new GetStatusChecksFromCommits($loop, $logger, self::IGNORE_ACTIONS, 0.1, false))($commit)->toArray()->toPromise();
         $result  = $this->await($promise);
         self::assertInstanceOf(Checks::class, $result[0]);
         self::assertInstanceOf(Status::class, $result[1]);

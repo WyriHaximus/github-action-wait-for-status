@@ -39,7 +39,7 @@ final class StatusTest extends AsyncTestCase
         $this->combinedStatus->totalCount()->shouldBeCalled()->willReturn(1);
         $this->combinedStatus->state()->shouldBeCalled()->willReturn('success');
         $this->combinedStatus->refresh()->shouldBeCalled()->willReturn(resolve($combinedStatus));
-        $status = new Status($logger, $combinedStatus);
+        $status = new Status($logger, $combinedStatus, false);
         self::assertFalse($status->hasResolved());
         self::assertFalse($status->isSuccessful());
         $status->refresh();
@@ -59,7 +59,7 @@ final class StatusTest extends AsyncTestCase
         $this->combinedStatus->totalCount()->shouldBeCalled()->willReturn(1);
         $this->combinedStatus->state()->shouldBeCalled()->willReturn('failure');
         $this->combinedStatus->refresh()->shouldBeCalled()->willReturn(resolve($combinedStatus));
-        $status = new Status($logger, $combinedStatus);
+        $status = new Status($logger, $combinedStatus, false);
         self::assertFalse($status->hasResolved());
         self::assertFalse($status->isSuccessful());
         $status->refresh();
@@ -80,7 +80,7 @@ final class StatusTest extends AsyncTestCase
         $this->combinedStatus->totalCount()->shouldBeCalled()->willReturn(1);
         $this->combinedStatus->state()->shouldBeCalled()->willReturn('pending');
         $this->combinedStatus->refresh()->shouldBeCalled()->willReturn(resolve($combinedStatus));
-        $status = new Status($logger, $combinedStatus);
+        $status = new Status($logger, $combinedStatus, false);
         self::assertFalse($status->hasResolved());
         self::assertFalse($status->isSuccessful());
         $status->refresh();
@@ -100,7 +100,7 @@ final class StatusTest extends AsyncTestCase
         assert($combinedStatus instanceof Commit\CombinedStatus);
         $this->combinedStatus->totalCount()->shouldBeCalled()->willReturn(0);
         $this->combinedStatus->refresh()->shouldBeCalled()->willReturn(resolve($combinedStatus));
-        $status = new Status($logger, $combinedStatus);
+        $status = new Status($logger, $combinedStatus, false);
         self::assertFalse($status->hasResolved());
         self::assertFalse($status->isSuccessful());
         $status->refresh();

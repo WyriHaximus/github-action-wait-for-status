@@ -47,7 +47,7 @@ final class App
         $this->github = $github;
     }
 
-    public function wait(string $repository, string $ignoreActions, float $checkInterval, string ...$shas): PromiseInterface
+    public function wait(string $repository, string $ignoreActions, float $checkInterval, bool $waitForCheck, string ...$shas): PromiseInterface
     {
         $timer = $this->rateLimitTimer();
         /**
@@ -63,7 +63,7 @@ final class App
         return unwrapObservableFromPromise((new LookUpRepository($repository, $this->logger))($this->github)->then(
             new LookUpCommits($this->logger, ...$shas)
         ))->flatMap(
-            new GetStatusChecksFromCommits(Loop::get(), $this->logger, $ignoreActions, $checkInterval)
+            new GetStatusChecksFromCommits(Loop::get(), $this->logger, $ignoreActions, $checkInterval, $waitForCheck)
         )->map(
             new WaitForStatusCheckResult(Loop::get(), $this->logger, $checkInterval)
         )->toArray()->toPromise()->then(static function (array $promises): PromiseInterface {

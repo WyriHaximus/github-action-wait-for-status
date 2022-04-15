@@ -4,7 +4,7 @@ GitHub Action that waits for successful commit statuses and checks.
 
 ![](images/action.png)
 
-This actions main goal is to wait until all statuses and checks are successful or any of them has failed and set its 
+This actions main goal is to wait until all statuses and checks are successful or any of them has failed and set its
 status output accordingly.
 
 ## Options
@@ -28,6 +28,15 @@ The amount of seconds to wait between checks, adjust depending on the expected t
 * *Default*: `10`
 * *Example*: `60` for longer running jobs, or `5` for very short jobs.
 
+### waitForCheck
+
+If true, this option will first wait for at least one check to be added to a commit. This is useful for external CIs that take some time to calculate which jobs need to be completed.
+
+* *Required*: `No`
+* *Type*: `true` or `""`
+* *Default*: `""`
+* *Example*: `true`
+
 ## Output
 
 This action has only one output and that's the `status` output. It has two possible values:
@@ -39,12 +48,12 @@ This action has only one output and that's the `status` output. It has two possi
 
 As shown in the example below the `status` output can be used to skip any follow up steps in the action if conditions aren't met.
 
-*Note*, that this action always has exit code `0` unless something fails, that's because it's indifferent about your 
+*Note*, that this action always has exit code `0` unless something fails, that's because it's indifferent about your
 state of your statuses and checks and leave what to do up to you.
 
 ## Example
 
-The following example is taken from the `PHP` package [`wyrihaximus/fake-php-version`](https://github.com/wyrihaximus/php-fake-php-version/)  
+The following example is taken from the `PHP` package [`wyrihaximus/fake-php-version`](https://github.com/wyrihaximus/php-fake-php-version/)
 where any PR with the `automerge` label will be automatically merged using [`pascalgn/automerge-action`](https://github.com/marketplace/actions/merge-pull-requests).
 The output of an action can be seen [here](https://github.com/WyriHaximus/php-fake-php-version/commit/0de3b06ee111ccc8b600219b95cebe4b434bef63/checks?check_suite_id=263513218).
 But in order to ensure we don't merge a failing PR we use this action to ensure everything is green before merging it.
