@@ -11,6 +11,10 @@ inputs:
     description: 'Time between checks (in seconds)'
     required: false
     default: 10
+  waitForCheck:
+    description: 'Whether to wait for a check if none are present'
+    required: false
+    default: ""
 outputs:
   status:
     description: 'Success or failure'

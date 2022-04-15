@@ -37,6 +37,7 @@ final class AppTest extends AsyncTestCase
                 'WyriHaximus/github-action-wait-for-status',
                 'wait',
                 1,
+                false,
                 'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64'
             ),
             30
@@ -65,6 +66,7 @@ final class AppTest extends AsyncTestCase
                 'WyriHaximus/php-broadcast',
                 'wait',
                 1,
+                false,
                 '67bdf304b34567e0f434bc0f9f19d3022cc1aa6c'
             ),
             30
@@ -92,6 +94,7 @@ final class AppTest extends AsyncTestCase
                 'WyriHaximus/github-action-wait-for-status',
                 'wait',
                 1,
+                false,
                 'd2ddfe536405fa61cd5f8ae1b3e06f192bac1d64'
             ),
             30

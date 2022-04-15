@@ -19,6 +19,7 @@ const EVENT = 'GITHUB_EVENT_NAME';
 const EVENT_PATH = 'GITHUB_EVENT_PATH';
 const ACTIONS = 'INPUT_IGNOREACTIONS';
 const INTERVAL = 'INPUT_CHECKINTERVAL';
+const WAIT_FOR_CHECK = 'INPUT_WAITFORCHECK';
 
 (function () {
     $consoleHandler = new FormattedPsrHandler(StdioLogger::create(Loop::get())->withHideLevel(true));
@@ -41,6 +42,7 @@ const INTERVAL = 'INPUT_CHECKINTERVAL';
         getenv(REPOSITORY),
         getenv(ACTIONS),
         (float) getenv(INTERVAL) > 0.0 ? (float) getenv(INTERVAL) : 13,
+        getenv(WAIT_FOR_CHECK) != "",
         ...$shas,
     )->then(function (string $state) use($logger) {
         $logger->info('Final status: ' . $state);
