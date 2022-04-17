@@ -107,4 +107,24 @@ final class StatusTest extends AsyncTestCase
         self::assertTrue($status->hasResolved());
         self::assertTrue($status->isSuccessful());
     }
+
+    /**
+     * @test
+     */
+    public function waitStatuses(): void
+    {
+        $logger = $this->logger->reveal();
+        assert($logger instanceof LoggerInterface);
+        $this->logger->warning('No statuses found yet, waiting')->shouldBeCalled();
+        $combinedStatus = $this->combinedStatus->reveal();
+        assert($combinedStatus instanceof Commit\CombinedStatus);
+        $this->combinedStatus->totalCount()->shouldBeCalled()->willReturn(0);
+        $this->combinedStatus->refresh()->shouldBeCalled()->willReturn(resolve($combinedStatus));
+        $status = new Status($logger, $combinedStatus, true);
+        self::assertFalse($status->hasResolved());
+        self::assertFalse($status->isSuccessful());
+        $status->refresh();
+        self::assertFalse($status->hasResolved());
+        self::assertFalse($status->isSuccessful());
+    }
 }

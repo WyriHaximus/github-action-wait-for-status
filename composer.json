@@ -25,13 +25,8 @@
   "require-dev": {
     "wyrihaximus/async-test-utilities": "^4"
   },
-  "config": {
-    "platform": {
-      "php": "7.4.7"
-    },
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "WyriHaximus\\GithubAction\\WaitForStatus\\": "src"
@@ -42,8 +37,20 @@
       "WyriHaximus\\Tests\\GithubAction\\WaitForStatus\\": "tests"
     }
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/package-versions-deprecated": true,
+      "ergebnis/composer-normalize": true,
+      "icanhazstring/composer-unused": true,
+      "infection/extension-installer": true
+    },
+    "platform": {
+      "php": "7.4.7"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
   "scripts": {
     "post-install-cmd": [
       "composer normalize"
