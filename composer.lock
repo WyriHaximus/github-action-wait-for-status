@@ -201,12 +201,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "ApiClients\\Foundation\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "ApiClients\\Foundation\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -833,12 +833,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "ApiClients\\Foundation\\Resource\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "ApiClients\\Foundation\\Resource\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -882,13 +882,13 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "ApiClients\\Tools\\Rx\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php",
                     "src/bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "ApiClients\\Tools\\Rx\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1513,12 +1513,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "ExceptionalJSON\\": "src/"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "ExceptionalJSON\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2119,12 +2119,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Composed\\": "src"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "Composed\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2168,12 +2168,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Kelunik\\LinkHeaderRfc5988\\": "src"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "Kelunik\\LinkHeaderRfc5988\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2228,14 +2228,14 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Lcobucci\\JWT\\": "src"
-                },
                 "files": [
                     "compat/class-aliases.php",
                     "compat/json-exception-polyfill.php",
                     "compat/lcobucci-clock-polyfill.php"
-                ]
+                ],
+                "psr-4": {
+                    "Lcobucci\\JWT\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2694,12 +2694,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Opis\\Closure\\": "src/"
-                },
                 "files": [
                     "functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "Opis\\Closure\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2824,12 +2824,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "DI\\": "src/"
-                },
                 "files": [
                     "src/functions.php"
-                ]
+                ],
+                "psr-4": {
+                    "DI\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3855,12 +3855,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "React\\Promise\\Stream\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "React\\Promise\\Stream\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4262,12 +4262,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "RingCentral\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "RingCentral\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4823,13 +4823,13 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "EventLoop\\": "src"
-                },
                 "files": [
                     "src/functions.php",
                     "src/bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "EventLoop\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5225,12 +5225,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "WyriHaximus\\PSR3\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "WyriHaximus\\PSR3\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5465,12 +5465,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "WyriHaximus\\Tactician\\CommandHandler\\": "src/"
-                },
                 "files": [
                     "src/bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "WyriHaximus\\Tactician\\CommandHandler\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5515,12 +5515,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "WyriHaximus\\React\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "WyriHaximus\\React\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
