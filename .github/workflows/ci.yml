@@ -100,37 +100,29 @@ jobs:
       - qa
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - run: docker version
-      - run: docker images
-      - run: mkdir -p $(echo "./clair/${DOCKER_IMAGE}:${REF}" | tr '[:upper:]' '[:lower:]')
-        env:
-          REF: ${{ needs.generate-ref.outputs.ref }}
-      - run: docker build --no-cache -t "${DOCKER_IMAGE}:${REF}" . -f Dockerfile-build --target=runtime
-        env:
-          REF: ${{ needs.generate-ref.outputs.ref }}
-      - run: docker tag "${DOCKER_IMAGE}:${REF}" "${DOCKER_IMAGE}:sha-${GITHUB_SHA}"
-        env:
-          REF: ${{ needs.generate-ref.outputs.ref }}
-      - run: docker run -v /tmp/trivy:/var/lib/trivy -v /var/run/docker.sock:/var/run/docker.sock -t aquasec/trivy:latest --cache-dir /var/lib/trivy image --exit-code 1 --no-progress --format table $(echo -e "${DOCKER_IMAGE}:${REF}")
-        env:
-          REF: ${{ needs.generate-ref.outputs.ref }}
-      - run: docker images
-      - name: Login to Docker Hub
-        if: contains(github.ref, 'dependabot') == false
-        env:
-          DOCKER_USER: ${{ secrets.HUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.HUB_PASSCODE }}
+      - uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          install: true
+      - name: Inspect builder
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | \
-          docker login \
-            --username "${{ secrets.DOCKER_USER }}" \
+          echo "Name:      ${{ steps.buildx.outputs.name }}"
+          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
+          echo "Status:    ${{ steps.buildx.outputs.status }}"
+          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
+          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+      - run: echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]'
+      - name: Login to GPR
+        if: contains(github.ref, 'dependabot') == false
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
+          docker login ghcr.io \
+            --username "WyriHaximus" \
             --password-stdin
-      - name: Push branch image to Docker Hub
-        if: contains(github.ref, 'dependabot') == false
-        run: docker push "${DOCKER_IMAGE}:${REF}"
-        env:
-          REF: ${{ needs.generate-ref.outputs.ref }}
-      - name: Push commit sha image to Docker Hub
-        if: contains(github.ref, 'dependabot') == false
-        run: docker push "${DOCKER_IMAGE}:sha-${GITHUB_SHA}"
+      - run: docker build --platform=linux/arm/v7,linux/arm64,linux/amd64 --output=type=registry --no-cache -t $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]') . -f Dockerfile-build
+      - run: docker pull $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]')
+      - run: docker run -v /tmp/trivy:/var/lib/trivy -v /var/run/docker.sock:/var/run/docker.sock -t aquasec/trivy:latest --cache-dir /var/lib/trivy image --exit-code 1 --no-progress --format table $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]')
