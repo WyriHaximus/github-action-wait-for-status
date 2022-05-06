@@ -5,7 +5,7 @@ branding:
   color: 'orange'
 inputs:
   ignoreActions:
-    description: 'CSV of action names to ignore'
+    description: 'CSV of action names to ignore. Note that these names are the human readable names use as status on commits, and show up as status checks on PRs.'
     required: true
   checkInterval:
     description: 'Time between checks (in seconds)'
