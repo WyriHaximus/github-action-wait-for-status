@@ -17,7 +17,7 @@ List of actions to ignore the status from, mainly to exclude the action this act
 
 * *Required*: `Yes`
 * *Type*: `CSV`
-* *Example*: `automerge,otheraction` but a single action is also perfectly valid `automerge`
+* *Example*: `Automerge PRs,Other Action` but a single action is also perfectly valid `Automerge PRs` *Note that these names are the human readable names use as status on commits, and show up as status checks on PRs.*
 
 ### checkInterval
 
@@ -85,7 +85,7 @@ jobs:
         id: waitforstatuschecks
         uses: "WyriHaximus/github-action-wait-for-status@v2"
         with:
-          ignoreActions: Automerge PRs
+          ignoreActions: "Automerge PRs" ## Note that these names are the human readable names use as status on commits, and show up as status checks on PRs.
           checkInterval: 13
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -99,7 +99,7 @@ jobs:
 
 ## License ##
 
-Copyright 2020 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
+Copyright 2022 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
