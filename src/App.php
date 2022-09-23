@@ -8,6 +8,8 @@ use ApiClients\Client\Github\AsyncClient;
 use ApiClients\Client\Github\AsyncClientInterface;
 use ApiClients\Client\Github\AuthenticationInterface;
 use ApiClients\Client\Github\RateLimitState;
+use ApiClients\Foundation\Options as FoundationOptions;
+use ApiClients\Foundation\Transport\Options as TransportOptions;
 use Clue\React\Buzz\Message\ResponseException;
 use Psr\Log\LoggerInterface;
 use React\EventLoop\Loop;
@@ -19,9 +21,11 @@ use Throwable;
 use WyriHaximus\PSR3\CallableThrowableLogger\CallableThrowableLogger;
 
 use function ApiClients\Tools\Rx\unwrapObservableFromPromise;
+use function array_key_exists;
 use function React\Promise\all;
 use function React\Promise\resolve;
 use function React\Promise\Stream\buffer;
+use function Safe\parse_url;
 use function Safe\sprintf;
 use function strpos;
 
@@ -36,9 +40,33 @@ final class App
 
     private AsyncClientInterface $github;
 
-    public static function boot(LoggerInterface $logger, AuthenticationInterface $auth): App
+    public static function boot(LoggerInterface $logger, AuthenticationInterface $auth, string $apiBaseUrl): App
     {
-        return new self($logger, AsyncClient::create(Loop::get(), $auth));
+        $transportOptions = [];
+        $url              = parse_url($apiBaseUrl);
+        foreach (
+            [
+                'host' => TransportOptions::HOST,
+                'scheme' => TransportOptions::SCHEMA,
+                'path' => TransportOptions::PATH,
+                'port' => TransportOptions::PORT,
+            ] as $key => $otherKey
+        ) {
+            if (! array_key_exists($key, $url)) {
+                continue;
+            }
+
+            $transportOptions[$otherKey] = $url[$key];
+        }
+
+        return new self(
+            $logger,
+            AsyncClient::create(
+                Loop::get(),
+                $auth,
+                [FoundationOptions::TRANSPORT_OPTIONS => $transportOptions],
+            )
+        );
     }
 
     private function __construct(LoggerInterface $logger, AsyncClientInterface $github)

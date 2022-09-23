@@ -7,7 +7,8 @@
     "Safe\\sprintf", "ApiClients\\Tools\\Rx\\unwrapObservableFromPromise",
     "WyriHaximus\\Constants\\Boolean\\FALSE_", "WyriHaximus\\Constants\\Boolean\\TRUE_",
     "WyriHaximus\\Constants\\HTTPStatusCodes\\NOT_FOUND",
-    "WyriHaximus\\Constants\\Numeric\\ONE", "WyriHaximus\\Constants\\Numeric\\ZERO"
+    "WyriHaximus\\Constants\\Numeric\\ONE", "WyriHaximus\\Constants\\Numeric\\ZERO",
+    "ApiClients\\Foundation\\Options", "ApiClients\\Foundation\\Transport\\Options"
   ],
   "php-core-extensions" : [
     "Core",
