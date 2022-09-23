@@ -17,6 +17,7 @@ const TOKEN = 'GITHUB_TOKEN';
 const SHA = 'GITHUB_SHA';
 const EVENT = 'GITHUB_EVENT_NAME';
 const EVENT_PATH = 'GITHUB_EVENT_PATH';
+const API_BASE_URL = 'GITHUB_API_URL';
 const ACTIONS = 'INPUT_IGNOREACTIONS';
 const INTERVAL = 'INPUT_CHECKINTERVAL';
 const WAIT_FOR_CHECK = 'INPUT_WAITFORCHECK';
@@ -38,7 +39,7 @@ const WAIT_FOR_CHECK = 'INPUT_WAITFORCHECK';
         $logger->notice('Pull Request detected');
         $shas[] = json_decode(file_get_contents(getenv(EVENT_PATH)))->pull_request->head->sha;
     }
-    App::boot($logger, new Token(getenv(TOKEN)))->wait(
+    App::boot($logger, new Token(getenv(TOKEN)), getenv(API_BASE_URL))->wait(
         getenv(REPOSITORY),
         getenv(ACTIONS),
         (float) getenv(INTERVAL) > 0.0 ? (float) getenv(INTERVAL) : 13,

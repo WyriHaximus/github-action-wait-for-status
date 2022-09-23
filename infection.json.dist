@@ -11,8 +11,24 @@
     "mutators": {
         "@default": true,
         "InstanceOf_": false,
+        "LogicalNot": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot"
+            ]
+        },
+        "ArrayItemRemoval": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot"
+            ]
+        },
+        "Foreach_": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot"
+            ]
+        },
         "Continue_": {
             "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot",
                 "WyriHaximus\\GithubAction\\WaitForStatus\\StatusCheck\\Checks::refresh"
             ]
         },

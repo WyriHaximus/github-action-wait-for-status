@@ -33,7 +33,7 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Check "qa (7.3)" has the following status "completed" and conclusion "success"')->shouldBeCalled();
         $logger->debug('All checks completed, marking resolve and success')->shouldBeCalled();
         $result = $this->await(
-            App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
+            App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'), 'https://api.github.com')->wait(
                 'WyriHaximus/github-action-wait-for-status',
                 'wait',
                 1,
@@ -62,7 +62,7 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Check "Travis CI - Branch" has the following status "completed" and conclusion "action_required"')->shouldBeCalled();
         $logger->debug('Check (Travis CI - Branch) failed, marking resolve and failure')->shouldBeCalled();
         $result = $this->await(
-            App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'))->wait(
+            App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'), 'https://api.github.com')->wait(
                 'WyriHaximus/php-broadcast',
                 'wait',
                 1,
@@ -90,7 +90,7 @@ final class AppTest extends AsyncTestCase
             Argument::type('array')
         )->shouldBeCalled();
         $result = $this->await(
-            App::boot($logger->reveal(), new Token('FAKE_TOKEN_TO_FORCE_ERROR'))->wait(
+            App::boot($logger->reveal(), new Token('FAKE_TOKEN_TO_FORCE_ERROR'), 'https://api.github.com')->wait(
                 'WyriHaximus/github-action-wait-for-status',
                 'wait',
                 1,
