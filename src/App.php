@@ -12,6 +12,7 @@ use ApiClients\Foundation\Options as FoundationOptions;
 use ApiClients\Foundation\Transport\Options as TransportOptions;
 use Clue\React\Buzz\Message\ResponseException;
 use Psr\Log\LoggerInterface;
+use React\Dns\Config\Config;
 use React\EventLoop\Loop;
 use React\EventLoop\TimerInterface;
 use React\Promise\PromiseInterface;
@@ -43,7 +44,12 @@ final class App
     public static function boot(LoggerInterface $logger, AuthenticationInterface $auth, string $apiBaseUrl): App
     {
         $transportOptions = [];
-        $url              = parse_url($apiBaseUrl);
+        $dnsConfig        = Config::loadSystemConfigBlocking();
+        if (isset($dnsConfig->nameservers[0])) { /** @phpstan-ignore-line */
+            $transportOptions[TransportOptions::DNS] = $dnsConfig->nameservers[0];
+        }
+
+        $url = parse_url($apiBaseUrl);
         foreach (
             [
                 'host' => TransportOptions::HOST,

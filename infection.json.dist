@@ -11,6 +11,16 @@
     "mutators": {
         "@default": true,
         "InstanceOf_": false,
+        "OneZeroInteger": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot"
+            ]
+        },
+        "IncrementInteger": {
+            "ignore": [
+                "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot"
+            ]
+        },
         "LogicalNot": {
             "ignore": [
                 "WyriHaximus\\GithubAction\\WaitForStatus\\App::boot"
