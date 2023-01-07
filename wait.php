@@ -47,6 +47,6 @@ const WAIT_FOR_CHECK = 'INPUT_WAITFORCHECK';
         ...$shas,
     )->then(function (string $state) use($logger) {
         $logger->info('Final status: ' . $state);
-        echo PHP_EOL, '::set-output name=status::' . $state, PHP_EOL;
+        file_put_contents(getenv('GITHUB_OUTPUT'), 'status=' . $state . "\n", FILE_APPEND);
     })->done();
 })();
