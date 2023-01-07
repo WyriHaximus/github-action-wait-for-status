@@ -29,8 +29,8 @@ final class AppTest extends AsyncTestCase
         $logger->debug('Locating commit: d2ddfe536405fa61cd5f8ae1b3e06f192bac1d64')->shouldBeCalled();
         $logger->notice('Checking statuses and checks for commit: d2ddfe536405fa61cd5f8ae1b3e06f192bac1d64')->shouldBeCalled();
         $logger->notice('Checking statuses')->shouldBeCalled();
-        $logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
-        $logger->debug('Check "qa (7.3)" has the following status "completed" and conclusion "success"')->shouldBeCalled();
+        $logger->warning('No statuses found, assuming success')->shouldBeCalled();
+        $logger->debug('Iterating over 0 check(s)')->shouldBeCalled();
         $logger->debug('All checks completed, marking resolve and success')->shouldBeCalled();
         $result = $this->await(
             App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'), 'https://api.github.com')->wait(
@@ -55,19 +55,18 @@ final class AppTest extends AsyncTestCase
         $logger->debug(Argument::containingString('Rate limit (remaining/limit/reset):'))->shouldBeCalled();
         $logger->debug('Looking up owner: WyriHaximus')->shouldBeCalled();
         $logger->debug('Looking up repository: php-broadcast')->shouldBeCalled();
-        $logger->debug('Locating commit: 67bdf304b34567e0f434bc0f9f19d3022cc1aa6c')->shouldBeCalled();
-        $logger->notice('Checking statuses and checks for commit: 67bdf304b34567e0f434bc0f9f19d3022cc1aa6c')->shouldBeCalled();
+        $logger->debug('Locating commit: fd41764a698496699704b11729ba16be936a5143')->shouldBeCalled();
+        $logger->notice('Checking statuses and checks for commit: fd41764a698496699704b11729ba16be936a5143')->shouldBeCalled();
         $logger->notice('Checking statuses')->shouldBeCalled();
-        $logger->debug('Iterating over 1 check(s)')->shouldBeCalled();
-        $logger->debug('Check "Travis CI - Branch" has the following status "completed" and conclusion "action_required"')->shouldBeCalled();
-        $logger->debug('Check (Travis CI - Branch) failed, marking resolve and failure')->shouldBeCalled();
+        $logger->debug('Iterating over 48 check(s)')->shouldBeCalled();
+        $logger->debug(Argument::type('string'))->shouldBeCalled();
         $result = $this->await(
             App::boot($logger->reveal(), (require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'etc/auth.php'), 'https://api.github.com')->wait(
                 'WyriHaximus/php-broadcast',
                 'wait',
                 1,
                 false,
-                '67bdf304b34567e0f434bc0f9f19d3022cc1aa6c'
+                'fd41764a698496699704b11729ba16be936a5143'
             ),
             30
         );

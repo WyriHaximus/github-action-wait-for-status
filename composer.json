@@ -50,9 +50,6 @@
     }
   },
   "scripts": {
-    "post-install-cmd": [
-      "composer normalize"
-    ],
     "post-update-cmd": [
       "composer normalize"
     ]
