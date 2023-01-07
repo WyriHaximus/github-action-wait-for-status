@@ -15,6 +15,10 @@ inputs:
     description: 'Whether to wait for a check if none are present'
     required: false
     default: ""
+  commitSha:
+    description: 'Overwrite the default detected GITHUB_SHA'
+    required: false
+    default: ""
 outputs:
   status:
     description: 'Success or failure'

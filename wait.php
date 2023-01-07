@@ -21,6 +21,7 @@ const API_BASE_URL = 'GITHUB_API_URL';
 const ACTIONS = 'INPUT_IGNOREACTIONS';
 const INTERVAL = 'INPUT_CHECKINTERVAL';
 const WAIT_FOR_CHECK = 'INPUT_WAITFORCHECK';
+const OVERWRITE_COMMIT_SHA = 'INPUT_COMMITSHA';
 
 (function () {
     $consoleHandler = new FormattedPsrHandler(StdioLogger::create(Loop::get())->withHideLevel(true));
@@ -38,6 +39,11 @@ const WAIT_FOR_CHECK = 'INPUT_WAITFORCHECK';
     if (getenv(EVENT) === 'pull_request') {
         $logger->notice('Pull Request detected');
         $shas[] = json_decode(file_get_contents(getenv(EVENT_PATH)))->pull_request->head->sha;
+    }
+    if (getenv(OVERWRITE_COMMIT_SHA) !== '') {
+        $shas = [
+            getenv(OVERWRITE_COMMIT_SHA),
+        ];
     }
     App::boot($logger, new Token(getenv(TOKEN)), getenv(API_BASE_URL))->wait(
         getenv(REPOSITORY),
