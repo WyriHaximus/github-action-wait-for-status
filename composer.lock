@@ -5269,22 +5269,22 @@
         },
         {
             "name": "wyrihaximus/psr-3-callable-throwable-logger",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger.git",
-                "reference": "ca426eb940fa9191f6b045360655ad34e74a2d0a"
+                "reference": "3e58cabf93c88ebf4231fa2a32859ec8617883f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-psr-3-callable-throwable-logger/zipball/ca426eb940fa9191f6b045360655ad34e74a2d0a",
-                "reference": "ca426eb940fa9191f6b045360655ad34e74a2d0a",
+                "url": "https://api.github.com/repos/WyriHaximus/php-psr-3-callable-throwable-logger/zipball/3e58cabf93c88ebf4231fa2a32859ec8617883f8",
+                "reference": "3e58cabf93c88ebf4231fa2a32859ec8617883f8",
                 "shasum": ""
             },
             "require": {
                 "php": "^8 || ^7.4.7",
                 "psr/log": "^3 || ^2 || ^1",
-                "thecodingmachine/safe": "^1.0 || ^0.1.16"
+                "thecodingmachine/safe": "^2 || ^1.0 || ^0.1.16"
             },
             "require-dev": {
                 "wyrihaximus/psr-3-utilities": "^1.0",
@@ -5309,7 +5309,7 @@
             "description": "callable throwable decorator around a PSR-3 logger (to be used with react/promise and reactivex/rxphp)",
             "support": {
                 "issues": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger/issues",
-                "source": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger/tree/2.3.0"
+                "source": "https://github.com/WyriHaximus/php-psr-3-callable-throwable-logger/tree/2.3.1"
             },
             "funding": [
                 {
@@ -5317,7 +5317,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-17T21:49:34+00:00"
+            "time": "2023-01-14T19:24:38+00:00"
         },
         {
             "name": "wyrihaximus/psr-3-utilities",
