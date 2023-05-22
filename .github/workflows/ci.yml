@@ -121,7 +121,7 @@ jobs:
         uses: ./
         with:
           ignoreActions: "test-docker-image,Create Release,Wait for status checks"
-          checkInterval: 1
+          checkInterval: 30
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: "Assert Output: status is successful"
