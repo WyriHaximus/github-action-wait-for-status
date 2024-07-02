@@ -104,12 +104,12 @@ jobs:
           docker login ghcr.io \
             --username "WyriHaximus" \
             --password-stdin
-      - run: docker build --platform=linux/arm/v7,linux/arm64,linux/amd64 --output=type=registry --no-cache -t $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]') . -f Dockerfile-build
+      - run: docker build --platform=linux/arm64,linux/amd64 --output=type=registry --no-cache -t $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]') . -f Dockerfile-build
       - run: docker pull $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]')
 #      - run: docker run -v /tmp/trivy:/var/lib/trivy -v /var/run/docker.sock:/var/run/docker.sock -t aquasec/trivy:latest --cache-dir /var/lib/trivy image --exit-code 1 --no-progress --format table $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]')
       - run: |
           printf "FROM %s" $(echo "ghcr.io/${GITHUB_REPOSITORY}:sha-${GITHUB_SHA}" | tr '[:upper:]' '[:lower:]') >> Dockerfile.tag
-          docker build --platform=linux/arm/v7,linux/arm64,linux/amd64 --output=type=registry --no-cache -f Dockerfile.tag -t $(echo "ghcr.io/${GITHUB_REPOSITORY}:${{ needs.generate-ref.outputs.ref }}" | tr '[:upper:]' '[:lower:]') .
+          docker build --platform=linux/arm64,linux/amd64 --output=type=registry --no-cache -f Dockerfile.tag -t $(echo "ghcr.io/${GITHUB_REPOSITORY}:${{ needs.generate-ref.outputs.ref }}" | tr '[:upper:]' '[:lower:]') .
   test-docker-image:
     runs-on: ubuntu-latest
     needs: build-docker-image
