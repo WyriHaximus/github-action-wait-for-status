@@ -8,7 +8,7 @@
     "api-clients/rx": "^2.2.1",
     "bramus/monolog-colored-line-formatter": "^3.0",
     "clue/buzz-react": "^2.7",
-    "monolog/monolog": "^2.0",
+    "monolog/monolog": "^2.0 || ^3.0",
     "psr/log": "^1.1",
     "react/event-loop": "^1.2",
     "react/promise": "^2.7",
