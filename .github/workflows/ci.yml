@@ -13,7 +13,7 @@ jobs:
     container:
       image: wyrihaximusnet/php:7.4-zts-alpine3.12-dev-root
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Cache composer packages
         uses: actions/cache@v1
         with:
@@ -31,7 +31,7 @@ jobs:
     container:
       image: wyrihaximusnet/php:7.4-zts-alpine3.12-dev-root
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Cache composer packages
         uses: actions/cache@v1
         with:
@@ -50,7 +50,7 @@ jobs:
     outputs:
       REF: ${{ steps.generate-ref.outputs.ref }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - id: generate-ref
         name: Generate Ref
         run: |
@@ -66,7 +66,7 @@ jobs:
     name: Lint Dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Lint Dockerfile
         uses: docker://hadolint/hadolint:latest-debian
         with:
@@ -81,7 +81,7 @@ jobs:
       - lint-dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -114,7 +114,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-docker-image
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - run: sed -i "s/master/sha-${GITHUB_SHA}/g" Dockerfile
       - name: 'Wait for status checks'
         id: waitforstatuschecks
