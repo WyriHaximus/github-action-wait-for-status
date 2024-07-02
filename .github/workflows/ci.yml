@@ -125,7 +125,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: "Assert Output: status is successful"
-        uses: nick-fields/assert-action@v1
+        uses: nick-fields/assert-action@v2
         with:
           expected: success
           actual: ${{ steps.waitforstatuschecks.outputs.status }}
