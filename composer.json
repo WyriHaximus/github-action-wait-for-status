@@ -23,7 +23,7 @@
     "wyrihaximus/ticking-promise": "^1.6"
   },
   "require-dev": {
-    "wyrihaximus/async-test-utilities": "^4"
+    "wyrihaximus/async-test-utilities": "^4 || ^8"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
