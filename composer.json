@@ -11,7 +11,7 @@
     "monolog/monolog": "^2.0",
     "psr/log": "^1.1",
     "react/event-loop": "^1.2",
-    "react/promise": "^2.7",
+    "react/promise": "^2.7 || ^3.0",
     "react/promise-stream": "^1.2",
     "react/stream": "^1.1",
     "reactivex/rxphp": "^2.0",
