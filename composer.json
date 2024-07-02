@@ -15,7 +15,7 @@
     "react/promise-stream": "^1.2",
     "react/stream": "^1.1",
     "reactivex/rxphp": "^2.0",
-    "thecodingmachine/safe": "^1.1",
+    "thecodingmachine/safe": "^1.1 || ^2.0",
     "wyrihaximus/constants": "^1.5",
     "wyrihaximus/monolog-formatted-psr-handler": "^1.2",
     "wyrihaximus/psr-3-callable-throwable-logger": "^2.0",
