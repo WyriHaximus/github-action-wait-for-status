@@ -145,7 +145,7 @@ jobs:
       - run: git commit -F release-${{ matrix.version }}-changelog.md
       - run: git tag -F release-${{ matrix.version }}-changelog.md ${{ matrix.version }}
       - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@v0.8.0
         with:
           tags: true
           branch: release/${{ matrix.version }}
