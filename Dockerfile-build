@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:experimental
-FROM wyrihaximusnet/php:7.4-nts-alpine-dev-root AS install-dependencies
+FROM ghcr.io/wyrihaximusnet/php:7.4-nts-alpine-dev-root AS install-dependencies
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN mkdir /workdir
 WORKDIR /workdir
@@ -8,7 +8,7 @@ COPY ./composer.* ./wait.php /workdir/
 RUN composer install --ansi --no-progress --no-interaction --prefer-dist --no-dev
 
 ## Compile runtime image
-FROM wyrihaximusnet/php:7.4-nts-alpine-root AS runtime
+FROM ghcr.io/wyrihaximusnet/php:7.4-nts-alpine-root AS runtime
 RUN mkdir /workdir
 WORKDIR /workdir
 COPY --from=install-dependencies /workdir/ /workdir/
