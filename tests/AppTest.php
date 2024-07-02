@@ -81,7 +81,7 @@ final class AppTest extends AsyncTestCase
     {
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(Argument::containingString('Rate limit (remaining/limit/reset):'));
-        $logger->debug('Error reason: {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}')->shouldBeCalled();
+        $logger->debug('Error reason: {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest","status":"401"}')->shouldBeCalled();
         $logger->debug('Looking up owner: WyriHaximus')->shouldBeCalled();
         $logger->log(
             'error',
