@@ -19,7 +19,7 @@
     "wyrihaximus/constants": "^1.5",
     "wyrihaximus/monolog-formatted-psr-handler": "^1.2",
     "wyrihaximus/psr-3-callable-throwable-logger": "^2.0",
-    "wyrihaximus/react-psr-3-stdio": "^2.1",
+    "wyrihaximus/react-psr-3-stdio": "^2.1 || ^3.0",
     "wyrihaximus/ticking-promise": "^1.6"
   },
   "require-dev": {
