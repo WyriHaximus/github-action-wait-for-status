@@ -2,7 +2,7 @@
   "name": "wyrihaximus/github-action-wait-for-status",
   "description": "GitHub Action that waits for successful commit statuses and checks.",
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "api-clients/github": "dev-main",
     "api-clients/psr7-http-status-exceptions": "^1.0",
     "api-clients/rx": "^2.2.1",
