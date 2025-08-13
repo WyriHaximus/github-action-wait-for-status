@@ -13,9 +13,9 @@ jobs:
     container:
       image: wyrihaximusnet/php:7.4-zts-alpine3.12-dev-root
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - name: Cache composer packages
-        uses: actions/cache@v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: ./vendor/
           key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
@@ -31,9 +31,9 @@ jobs:
     container:
       image: wyrihaximusnet/php:7.4-zts-alpine3.12-dev-root
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - name: Cache composer packages
-        uses: actions/cache@v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: ./vendor/
           key: ${{ hashFiles('**/composer.json') }}-${{ hashFiles('**/composer.lock') }}
@@ -50,7 +50,7 @@ jobs:
     outputs:
       REF: ${{ steps.generate-ref.outputs.ref }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - id: generate-ref
         name: Generate Ref
         run: |
@@ -66,7 +66,7 @@ jobs:
     name: Lint Dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - name: Lint Dockerfile
         uses: docker://hadolint/hadolint:latest-debian
         with:
@@ -81,12 +81,12 @@ jobs:
       - lint-dockerfile
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3
         with:
           install: true
       - name: Inspect builder
@@ -114,7 +114,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-docker-image
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - run: sed -i "s/master/sha-${GITHUB_SHA}/g" Dockerfile
       - name: 'Wait for status checks'
         id: waitforstatuschecks
@@ -125,7 +125,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: "Assert Output: status is successful"
-        uses: nick-fields/assert-action@v2
+        uses: nick-fields/assert-action@aa0067e01f0f6545c31755d6ca128c5a3a14f6bf # v2
         with:
           expected: success
           actual: ${{ steps.waitforstatuschecks.outputs.status }}
