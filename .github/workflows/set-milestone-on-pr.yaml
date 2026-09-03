@@ -19,7 +19,7 @@ jobs:
         if: github.event.pull_request.milestone == null
         id: previousgittag
         continue-on-error: true
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        uses: "WyriHaximus/github-action-get-previous-tag@2df46c7f3054f28f5cbc9b415c216de80ac1b756" # master
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - run: |
@@ -68,7 +68,7 @@ jobs:
           PREVIOUSTAG: ${{ steps.previoustag.outputs.tag }}
       - name: 'Get Milestones'
         if: github.event.pull_request.milestone == null
-        uses: "WyriHaximus/github-action-get-milestones@master"
+        uses: "WyriHaximus/github-action-get-milestones@264481fc8db95e8e233ac43da8a803a612bcbc56" # master
         id: milestones
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -81,7 +81,7 @@ jobs:
       - name: 'Create Milestone'
         if: github.event.pull_request.milestone == null && steps.querymilestone.outputs.number == ''
         id: createmilestone
-        uses: "WyriHaximus/github-action-create-milestone@master"
+        uses: "WyriHaximus/github-action-create-milestone@bcd9e15439836d6098d353a5bcf82de46591a35d" # master
         with:
           title: ${{ steps.milestone.outputs.milestone }}
         env:
@@ -101,7 +101,7 @@ jobs:
           QUERY_NUMBER: ${{ steps.querymilestone.outputs.number }}
       - name: 'Set Milestone'
         if: github.event.pull_request.milestone == null
-        uses: "WyriHaximus/github-action-set-milestone@master"
+        uses: "WyriHaximus/github-action-set-milestone@9121691224645139fbafc4b26fa43dfabb06ce95" # master
         with:
           issue_number: ${{ github.event.pull_request.number }}
           milestone_number: ${{ steps.selectmilestone.outputs.number }}
