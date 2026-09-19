@@ -19,5 +19,11 @@ outputs:
   status:
     description: 'Success or failure'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - name: Generate Comments
+      uses: docker://ghcr.io/wyrihaximus/github-action-wait-for-status:master
+      with:
+        ignoreActions: ${{ inputs.ignoreActions }}
+        checkInterval: ${{ inputs.checkInterval }}
+        waitForCheck: ${{ inputs.waitForCheck }}
