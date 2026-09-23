@@ -3980,16 +3980,16 @@
         },
         {
             "name": "react/promise-stream",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/promise-stream.git",
-                "reference": "e6d2805e09ad50c4896f65f5e8705fe4ee7731a3"
+                "reference": "87d1399a33926fd5ba28a7647346b71482787502"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise-stream/zipball/e6d2805e09ad50c4896f65f5e8705fe4ee7731a3",
-                "reference": "e6d2805e09ad50c4896f65f5e8705fe4ee7731a3",
+                "url": "https://api.github.com/repos/reactphp/promise-stream/zipball/87d1399a33926fd5ba28a7647346b71482787502",
+                "reference": "87d1399a33926fd5ba28a7647346b71482787502",
                 "shasum": ""
             },
             "require": {
@@ -3998,7 +3998,7 @@
                 "react/stream": "^1.0 || ^0.7 || ^0.6 || ^0.5 || ^0.4.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.3 || ^5.7 || ^4.8.35"
+                "phpunit/phpunit": "^9.5 || ^5.7 || ^4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -4047,19 +4047,15 @@
             ],
             "support": {
                 "issues": "https://github.com/reactphp/promise-stream/issues",
-                "source": "https://github.com/reactphp/promise-stream/tree/v1.5.0"
+                "source": "https://github.com/reactphp/promise-stream/tree/v1.6.0"
             },
             "funding": [
                 {
-                    "url": "https://github.com/WyriHaximus",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/clue",
-                    "type": "github"
+                    "url": "https://opencollective.com/reactphp",
+                    "type": "open_collective"
                 }
             ],
-            "time": "2022-09-09T11:42:18+00:00"
+            "time": "2023-07-07T10:11:54+00:00"
         },
         {
             "name": "react/promise-timer",
