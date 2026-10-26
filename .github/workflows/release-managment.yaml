@@ -19,7 +19,7 @@ jobs:
   release-managment:
     name: Release Management
     secrets: inherit
-    uses: WyriHaximus/github-workflows/.github/workflows/github-action-release-managment.yaml@main
+    uses: WyriHaximus/github-workflows/.github/workflows/github-action-release-managment.yaml@6988c81b0977eb30959fe16a3457931373523d84 # main
     with:
       milestone: ${{ github.event.milestone.title }}
       description: ${{ github.event.milestone.description }}
